@@ -439,10 +439,24 @@ html, body { width: 100%; height: 100%; overflow: hidden; background: #000;
 .ep-col-bg { position: absolute; inset: 0; background-size: cover; background-position: center; z-index: 0; }
 .ep-col-ov { position: absolute; inset: 0; z-index: 1; }
 .ep-col-inner { position: absolute; inset: 0; z-index: 2; padding: 22px 22px 20px; display: flex; flex-direction: column; direction: rtl; }
+/* Dark overlay UNDER the text content for readability across all bg photos */
+.ep-col-inner::before {
+  content: ""; position: absolute; left: 0; right: 0; top: 0;
+  height: 76%;
+  background: linear-gradient(to bottom,
+    rgba(0,0,0,0.88) 0%,
+    rgba(0,0,0,0.78) 45%,
+    rgba(0,0,0,0.55) 75%,
+    transparent 100%);
+  z-index: -1;
+  pointer-events: none;
+}
+.ep-col-inner > * { position: relative; z-index: 1; }
 .ep-col-num { font-family: var(--mono); font-size: 10px; letter-spacing: 0.3em; color: var(--gold); }
 .ep-col-title { font-family: var(--body); font-weight: 700; font-size: 26px; line-height: 1.2; margin-top: 10px; }
 .ep-col-tag { font-family: var(--body); font-size: 18px; line-height: 1.5; color: var(--gold-lt); opacity: 0.9; margin-top: 4px; font-weight: 600; }
-.ep-col-summary { font-family: var(--body); font-size: 16px; line-height: 1.55; opacity: 0.62; margin-top: 10px; }
+/* Episode description — bumped 20% for readability (16 → 19.5px) */
+.ep-col-summary { font-family: var(--body); font-size: 19.5px; line-height: 1.6; opacity: 0.85; margin-top: 12px; color: rgba(255,255,255,0.92); }
 .ep-col-meta {
   margin-top: 10px; padding-top: 10px; border-top: 1px solid rgba(255,255,255,0.07);
   font-family: var(--mono); font-size: 9.5px; letter-spacing: 0.16em;
@@ -931,7 +945,7 @@ html, body { width: 100%; height: 100%; overflow: hidden; background: #000;
   <div class="slide-body" style="padding-top:14px; gap:0;">
     <div class="kicker" style="margin-bottom:14px;">الخيط الرابط</div>
     <h2 style="font-family:var(--body);font-weight:900;font-size:74px;line-height:1.06;direction:rtl;">
-      آدم — <span style="color:var(--gold-lt);">من المتفرج</span><br>إلى صانع القيمة.
+      آدم — <span style="color:var(--gold-lt);">من المتفرج</span><br>إلى صانع للقيمة في مدرسة نايل.
     </h2>
     <p class="t-lead" style="max-width:1080px;margin-top:18px;font-size:24px;opacity:0.92;">
       شخصية واحدة. رحلة واحدة. ستة مشاهد تكشف نايل كما لم تُرَ من قبل.
@@ -1026,12 +1040,6 @@ html, body { width: 100%; height: 100%; overflow: hidden; background: #000;
         <div class="ep-col-title">الحلم</div>
         <div class="ep-col-tag">قبل أن يدخل نايل</div>
         <div class="ep-col-summary">شاب يقف على عتبة حلم — خريّج هندسة معمارية يتابع كل مشروع لنايل من بعيد. لحظة كتابة طلب التقديم — العتبة قبل الدخول.</div>
-        <div class="ep-col-video">
-          <iframe
-            src="https://www.youtube.com/embed/gjq81Jx-DK4?rel=0&modestbranding=1&controls=1"
-            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-            allowfullscreen loading="lazy"></iframe>
-        </div>
         <div class="ep-col-meta">
           <b>المواقع</b>
           <span>خارج القاهرة عند الفجر · شقة آدم · مدخل مقر نايل</span>
