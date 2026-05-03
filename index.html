@@ -363,6 +363,27 @@ html, body { width: 100%; height: 100%; overflow: hidden; background: #000;
   line-height: 1.35;
 }
 
+/* Slide-03 closing strip — single line, tight, replaces the heavy callout */
+.why-bottom {
+  margin-top: 18px;
+  padding: 14px 22px;
+  display: flex; gap: 18px; align-items: center;
+  background: linear-gradient(90deg, rgba(146,114,65,0.16), rgba(146,114,65,0.03));
+  border-inline-start: 3px solid var(--gold);
+  border-radius: 0 4px 4px 0;
+  direction: rtl;
+}
+.why-bottom-tag {
+  font-family: var(--mono); font-size: 10px; letter-spacing: 0.32em;
+  color: var(--gold); flex-shrink: 0; direction: ltr;
+  padding: 5px 10px; border: 1px solid rgba(146,114,65,0.45); border-radius: 999px;
+}
+.why-bottom-line {
+  font-family: var(--body); font-size: 17px; line-height: 1.55;
+  color: rgba(255,255,255,0.82);
+}
+.why-bottom-line strong { font-weight: 700; color: var(--gold-lt); letter-spacing: 0.02em; }
+
 /* ── Series Overview (Slide 05 NEW) ── */
 .arc-wrap {
   position: relative; padding: 70px 24px 42px;
@@ -568,7 +589,16 @@ html, body { width: 100%; height: 100%; overflow: hidden; background: #000;
   .why-card-tag { justify-self: flex-start; align-self: flex-start; }
   .why-card-name { font-size: 30px !important; }
   .why-card-desc { font-size: 15.5px !important; }
-  .why-video { max-width: 240px; }
+  /* Mobile embedded video — centered + 20% bigger (240 → 288) */
+  .why-video {
+    max-width: 288px !important;
+    width: 288px !important;
+    height: auto !important;
+    aspect-ratio: 9 / 16 !important;
+    margin: 0 auto !important;
+    justify-self: center !important;
+    align-self: center !important;
+  }
   .prod-grid { grid-template-columns: 1fr !important; gap: 24px; }
   .team-leaders { flex-direction: column !important; }
   .team-grid { grid-template-columns: 1fr 1fr !important; }
@@ -786,11 +816,8 @@ html, body { width: 100%; height: 100%; overflow: hidden; background: #000;
   </header>
 
   <div class="slide-body" style="padding-top:8px; gap:0;">
-    <div class="kicker" style="margin-bottom:12px;">السياق العالمي</div>
-    <h2 class="t-h1" style="margin-bottom:6px;">أول مطور في مصر ينتج عمل درامي من بطولة فريق العمل الحقيقي</h2>
-    <p style="font-family:var(--body);font-size:18px;line-height:1.6;color:rgba(255,255,255,0.5);max-width:920px;margin-top:8px;">
-      ثلاث علامات عالمية اعتمدت الفورمات نفسها قبلكم — وحوّلت المؤسسة إلى أسطورة. الآن دور نايل.
-    </p>
+    <div class="kicker" style="margin-bottom:14px;">السياق العالمي · ثلاث علامات سبقتنا</div>
+    <h2 class="t-h1" style="margin-bottom:18px;max-width:1400px;">أول مطور في مصر ينتج عمل درامي من بطولة فريق العمل الحقيقي</h2>
 
     <!-- Two-column: brand stack + featured video -->
     <div class="why-grid">
@@ -837,9 +864,12 @@ html, body { width: 100%; height: 100%; overflow: hidden; background: #000;
 
     </div>
 
-    <div class="callout" style="margin-top:18px;">
-      استخدمت هذه العلامات الكبرى الدراما القصيرة لتحويل المؤسسة إلى قصة يتذكّرها العالم.
-      <strong style="font-weight:700;color:var(--gold-lt);">حان دور NILE DEVELOPMENTS.</strong>
+    <div class="why-bottom">
+      <span class="why-bottom-tag">3 / 3</span>
+      <span class="why-bottom-line">
+        ثلاث علامات حوّلت المؤسسة إلى قصة يتذكّرها العالم —
+        <strong>حان دور NILE DEVELOPMENTS.</strong>
+      </span>
     </div>
   </div>
 
