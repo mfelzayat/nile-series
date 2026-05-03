@@ -603,10 +603,10 @@ html, body { width: 100%; height: 100%; overflow: hidden; background: #000;
   .why-card-tag { justify-self: flex-start; align-self: flex-start; }
   .why-card-name { font-size: 30px !important; }
   .why-card-desc { font-size: 15.5px !important; }
-  /* Mobile embedded video — centered + 20% bigger (240 → 288) */
+  /* Mobile embedded video — centered + 20% bigger again (288 → 346) */
   .why-video {
-    max-width: 288px !important;
-    width: 288px !important;
+    max-width: 346px !important;
+    width: min(86vw, 346px) !important;
     height: auto !important;
     aspect-ratio: 9 / 16 !important;
     margin: 0 auto !important;
