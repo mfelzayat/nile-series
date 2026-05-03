@@ -815,29 +815,26 @@ html, body { width: 100%; height: 100%; overflow: hidden; background: #000;
   /* Slide 04 (الفكرة) — push tower to the LEFT, dark overlay over the RIGHT
      so the Arabic text on the right reads cleanly while the tower stays
      visible on the left of the viewport. */
+  /* Slide 04 — mobile: tower in upper-center, vertical vignette below for text */
   .slide[data-label="04 الفكرة"] .ph-img {
-    background-position: 92% center !important;
+    background-position: 50% 32% !important;   /* tower upper-center, fully visible */
     background-size: cover !important;
   }
   .slide[data-label="04 الفكرة"] .ph-ov {
     background:
-      linear-gradient(270deg,
-        rgba(0,0,0,0.94) 0%,
-        rgba(0,0,0,0.78) 30%,
-        rgba(0,0,0,0.42) 58%,
-        rgba(0,0,0,0.18) 88%,
-        rgba(0,0,0,0.10) 100%),
       linear-gradient(to bottom,
-        rgba(0,0,0,0.45) 0%,
-        rgba(0,0,0,0.10) 14%,
-        transparent 30%,
-        transparent 78%,
-        rgba(0,0,0,0.55) 100%) !important;
+        rgba(0,0,0,0.20) 0%,
+        rgba(0,0,0,0.18) 24%,
+        rgba(0,0,0,0.55) 46%,
+        rgba(0,0,0,0.88) 68%,
+        rgba(0,0,0,0.95) 100%) !important;
   }
-  /* Bring text away from the now-visible tower on the left edge */
+  /* Stick the text-block to the bottom half so it sits over the dark vignette */
   .slide[data-label="04 الفكرة"] .cv {
+    justify-content: flex-end !important;
     max-width: 100% !important;
-    padding-inline-start: 8px !important;
+    padding-inline-start: 0 !important;
+    padding-bottom: 4px !important;
   }
   .slide[data-label="04 الفكرة"] blockquote {
     font-size: 30px !important;
