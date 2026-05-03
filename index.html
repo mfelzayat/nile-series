@@ -277,6 +277,117 @@ html, body { width: 100%; height: 100%; overflow: hidden; background: #000;
   color: rgba(146,114,65,0.7); text-transform: uppercase; text-align: center; direction: rtl;
 }
 
+/* ── Slide 03 — refreshed (typography-led, no broken logo boxes) ── */
+.why-grid {
+  flex: 1;
+  display: grid;
+  grid-template-columns: 58fr 42fr;
+  gap: 38px;
+  margin-top: 26px;
+  direction: ltr;
+  align-items: stretch;
+}
+.why-brands {
+  display: flex; flex-direction: column; gap: 14px; direction: rtl;
+}
+.why-card {
+  flex: 1;
+  padding: 24px 30px;
+  border-top: 2px solid rgba(146,114,65,0.55);
+  background: linear-gradient(135deg, rgba(146,114,65,0.09) 0%, rgba(146,114,65,0.02) 100%);
+  display: grid; grid-template-columns: 1fr auto;
+  gap: 22px; align-items: center; direction: rtl;
+  position: relative;
+}
+.why-card--finale {
+  border-top-color: var(--gold);
+  background: linear-gradient(135deg, rgba(146,114,65,0.18) 0%, rgba(146,114,65,0.04) 100%);
+  box-shadow: 0 12px 40px rgba(146,114,65,0.08), inset 0 1px 0 rgba(146,114,65,0.2);
+}
+.why-card-text { display: flex; flex-direction: column; gap: 6px; min-width: 0; }
+.why-card-name {
+  font-family: var(--display);
+  font-weight: 600;
+  font-size: 40px;
+  line-height: 1;
+  color: var(--gold-lt);
+  letter-spacing: 0.005em;
+}
+.why-card--finale .why-card-name { color: var(--gold); text-shadow: 0 0 24px rgba(146,114,65,0.45); }
+.why-card-desc {
+  font-family: var(--body);
+  font-size: 17.5px;
+  line-height: 1.55;
+  color: rgba(255,255,255,0.65);
+}
+.why-card-tag {
+  font-family: var(--mono);
+  font-size: 9px;
+  letter-spacing: 0.32em;
+  color: rgba(146,114,65,0.7);
+  text-transform: uppercase;
+  padding: 7px 13px;
+  border: 1px solid rgba(146,114,65,0.32);
+  border-radius: 999px;
+  white-space: nowrap;
+  direction: ltr;
+  flex-shrink: 0;
+  align-self: start;
+}
+.why-card--finale .why-card-tag {
+  color: var(--ink);
+  background: var(--gold);
+  border-color: var(--gold);
+  font-weight: 600;
+}
+.why-video {
+  aspect-ratio: 9 / 16;
+  border-radius: 12px;
+  overflow: hidden;
+  background: #000;
+  position: relative;
+  box-shadow: 0 24px 70px rgba(0,0,0,0.78), 0 0 0 1px rgba(146,114,65,0.16);
+  align-self: stretch;
+  width: 100%;
+  max-width: 360px;
+  justify-self: center;
+  border: 1px solid rgba(146,114,65,0.18);
+}
+.why-video iframe {
+  position: absolute; inset: 0;
+  width: 100%; height: 100%; border: 0; display: block;
+}
+.why-video-caption {
+  position: absolute; left: 0; right: 0; top: 0;
+  padding: 14px 18px;
+  background: linear-gradient(to bottom, rgba(0,0,0,0.82) 0%, rgba(0,0,0,0.4) 60%, transparent 100%);
+  z-index: 2; pointer-events: none;
+  direction: ltr;
+  display: flex; align-items: center; justify-content: space-between;
+}
+.why-video-caption-name {
+  font-family: var(--mono); font-size: 9.5px;
+  letter-spacing: 0.32em; color: var(--gold-lt);
+  text-transform: uppercase;
+}
+.why-video-caption-tag {
+  font-family: var(--mono); font-size: 9px;
+  letter-spacing: 0.18em; color: rgba(255,255,255,0.55);
+  text-transform: uppercase;
+}
+.why-video-foot {
+  position: absolute; left: 0; right: 0; bottom: 0;
+  padding: 14px 18px 16px;
+  background: linear-gradient(to top, rgba(0,0,0,0.92) 0%, rgba(0,0,0,0.55) 65%, transparent 100%);
+  z-index: 2; pointer-events: none;
+  direction: rtl;
+}
+.why-video-foot-title {
+  font-family: var(--body); font-weight: 700;
+  font-size: 17px; color: rgba(255,255,255,0.92);
+  line-height: 1.35;
+}
+
 /* ── Series Overview (Slide 05 NEW) ── */
 .arc-wrap {
   position: relative; padding: 70px 24px 42px;
@@ -476,6 +587,13 @@ html, body { width: 100%; height: 100%; overflow: hidden; background: #000;
   .s02-left { padding-inline-end: 0 !important; border-inline-end: none !important; }
   .cards2 { grid-template-columns: 1fr !important; }
   .card-aramco { grid-template-columns: 1fr !important; }
+  /* Slide 03 refreshed — stack brands then video on mobile */
+  .why-grid { grid-template-columns: 1fr !important; gap: 24px !important; }
+  .why-card { grid-template-columns: 1fr !important; gap: 10px !important; padding: 18px 22px !important; }
+  .why-card-tag { justify-self: flex-start; align-self: flex-start; }
+  .why-card-name { font-size: 30px !important; }
+  .why-card-desc { font-size: 15.5px !important; }
+  .why-video { max-width: 240px; }
   .prod-grid { grid-template-columns: 1fr !important; gap: 24px; }
   .team-leaders { flex-direction: column !important; }
   .team-grid { grid-template-columns: 1fr 1fr !important; }
@@ -660,49 +778,60 @@ html, body { width: 100%; height: 100%; overflow: hidden; background: #000;
     <span class="foot-num">03 / 10</span>
   </header>
 
-  <div class="cv" style="gap:0;">
-    <div class="kicker" style="margin-bottom:14px;">السياق العالمي</div>
-    <h2 class="t-h1" style="margin-bottom:22px;">أول مطور في مصر ينتج عمل درامي من بطولة فريق العمل الحقيقي</h2>
+  <div class="slide-body" style="padding-top:8px; gap:0;">
+    <div class="kicker" style="margin-bottom:12px;">السياق العالمي</div>
+    <h2 class="t-h1" style="margin-bottom:6px;">أول مطور في مصر ينتج عمل درامي من بطولة فريق العمل الحقيقي</h2>
+    <p style="font-family:var(--body);font-size:18px;line-height:1.6;color:rgba(255,255,255,0.5);max-width:920px;margin-top:8px;">
+      ثلاث علامات عالمية اعتمدت الفورمات نفسها قبلكم — وحوّلت المؤسسة إلى أسطورة. الآن دور نايل.
+    </p>
 
-    <!-- Apple + Emirates row -->
-    <div class="cards2">
-      <div class="card">
-        <div class="brand-logo brand-logo--apple">
-          <img src="mopz58hl-apple-logo.webp" alt="Apple">
-        </div>
-        <div class="card-name">Apple</div>
-        <div class="card-desc">وثائقيات قصيرة جعلت التصنيع أسطورة بصرية — لا مجرد تقنية</div>
-      </div>
-      <div class="card">
-        <div class="brand-logo brand-logo--emirates">
-          <img src="mopz58hs-emirates-logo.png" alt="Emirates">
-        </div>
-        <div class="card-name">Emirates</div>
-        <div class="card-desc">درامات عن طاقم الطيران حوّلت الخدمة إلى هوية لا تُنسى</div>
-      </div>
-    </div>
+    <!-- Two-column: brand stack + featured video -->
+    <div class="why-grid">
 
-    <!-- Aramco card with vertical 9:16 video -->
-    <div class="card-aramco">
-      <div>
-        <div class="brand-logo brand-logo--aramco">
-          <img src="mopz58d8-aramco-logo.png" alt="Aramco">
+      <!-- LEFT: Apple / Emirates / Aramco — typography only -->
+      <div class="why-brands">
+        <div class="why-card">
+          <div class="why-card-text">
+            <div class="why-card-name">Apple</div>
+            <div class="why-card-desc">وثائقيات قصيرة من داخل المصنع جعلت التصنيع أسطورة بصرية — لا مجرّد تقنية.</div>
+          </div>
+          <span class="why-card-tag">Cupertino · 2019</span>
         </div>
-        <div class="card-name">Aramco</div>
-        <div class="card-desc">موسم درامي كامل من الداخل بنى ثقة المستثمرين العالميين بالشركة</div>
+        <div class="why-card">
+          <div class="why-card-text">
+            <div class="why-card-name">Emirates</div>
+            <div class="why-card-desc">درامات قصيرة عن طاقم الطيران حوّلت الخدمة إلى هوية لا تُنسى عبر القارات.</div>
+          </div>
+          <span class="why-card-tag">Dubai · 2022</span>
+        </div>
+        <div class="why-card why-card--finale">
+          <div class="why-card-text">
+            <div class="why-card-name">Aramco</div>
+            <div class="why-card-desc">موسم درامي كامل من الداخل بنى ثقة المستثمرين العالميين قبل الطرح العام الأكبر في التاريخ.</div>
+          </div>
+          <span class="why-card-tag">Riyadh · 2024</span>
+        </div>
       </div>
-      <div style="border-radius:6px;overflow:hidden;position:relative;background:#000;aspect-ratio:9/16;height:240px;width:auto;flex-shrink:0;box-shadow:0 12px 32px rgba(0,0,0,0.6);">
+
+      <!-- RIGHT: Big vertical 9:16 video (Aramco) -->
+      <div class="why-video">
+        <div class="why-video-caption">
+          <span class="why-video-caption-name">Aramco · Energy of Tomorrow</span>
+          <span class="why-video-caption-tag">9:16 · 90s</span>
+        </div>
         <iframe
-          src="https://www.youtube.com/embed/gjq81Jx-DK4?rel=0&modestbranding=1"
-          style="position:absolute;inset:0;width:100%;height:100%;border:none;"
+          src="https://www.youtube.com/embed/gjq81Jx-DK4?rel=0&modestbranding=1&playsinline=1"
           allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-          allowfullscreen loading="lazy">
-        </iframe>
+          allowfullscreen loading="lazy"></iframe>
+        <div class="why-video-foot">
+          <div class="why-video-foot-title">من بطولة فريق Aramco الحقيقي</div>
+        </div>
       </div>
+
     </div>
 
     <div class="callout" style="margin-top:18px;">
-      استخدمت هذه العلامات الكبرى الدراما القصيرة لتحويل المؤسسة إلى قصة يتذكرها العالم.
+      استخدمت هذه العلامات الكبرى الدراما القصيرة لتحويل المؤسسة إلى قصة يتذكّرها العالم.
       <strong style="font-weight:700;color:var(--gold-lt);">حان دور NILE DEVELOPMENTS.</strong>
     </div>
   </div>
