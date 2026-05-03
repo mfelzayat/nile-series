@@ -602,6 +602,18 @@ html, body { width: 100%; height: 100%; overflow: hidden; background: #000;
   color: var(--gold-lt); transform: scale(1.06);
 }
 .nbtn:disabled { opacity: 0.18; cursor: default; }
+.nbtn-home {
+  font-size: 18px; line-height: 1;
+  color: var(--gold-lt);
+  border-color: rgba(146,114,65,0.55);
+  background: rgba(146,114,65,0.08);
+}
+.nbtn-home:hover { background: rgba(146,114,65,0.32) !important; color: var(--gold) !important; }
+.nsep {
+  display: inline-block; width: 1px; height: 18px;
+  background: rgba(255,255,255,0.16); margin: 0 4px;
+  flex-shrink: 0;
+}
 .ndots { display: flex; gap: 6px; align-items: center; padding: 0 4px; }
 .ndot {
   width: 6px; height: 6px; border-radius: 50%;
@@ -1499,6 +1511,8 @@ html, body { width: 100%; height: 100%; overflow: hidden; background: #000;
 
 <!-- ── Navigation ── -->
 <div id="nav">
+  <button class="nbtn nbtn-home" id="home" title="ابدأ من الأول · Home">⌂</button>
+  <span class="nsep"></span>
   <button class="nbtn" id="prev" disabled>&#8592;</button>
   <div class="ndots" id="dots"></div>
   <span class="ncount" id="count">1 / 10</span>
@@ -1515,6 +1529,7 @@ html, body { width: 100%; height: 100%; overflow: hidden; background: #000;
   var countEl= document.getElementById('count');
   var prevBtn= document.getElementById('prev');
   var nextBtn= document.getElementById('next');
+  var homeBtn= document.getElementById('home');
   var hint   = document.getElementById('kbd-hint');
   var total  = slides.length;
   var cur    = 0;
@@ -1576,6 +1591,7 @@ html, body { width: 100%; height: 100%; overflow: hidden; background: #000;
 
   prevBtn.onclick = function() { go(cur - 1); };
   nextBtn.onclick = function() { go(cur + 1); };
+  homeBtn.onclick = function() { go(0); };
 
   document.addEventListener('keydown', function(e) {
     if (['ArrowRight', ' ', 'PageDown'].indexOf(e.key) > -1) { e.preventDefault(); go(cur + 1); }
