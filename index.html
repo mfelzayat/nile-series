@@ -149,36 +149,7 @@ html, body { width: 100%; height: 100%; overflow: hidden; background: #000;
 .stat-n { font-family: var(--mono); font-size: 50px; line-height: 1; color: var(--gold-lt); }
 .stat-l { font-family: var(--body); font-size: 18px; line-height: 1.55; color: rgba(255,255,255,0.55); margin-top: 10px; }
 
-/* ── Brand cards (Slide 03) — colored containers, NO white-invert filter ── */
-.cards2 { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-bottom: 16px; }
-.card-aramco {
-  padding: 22px 26px 20px;
-  border: 1px solid rgba(146,114,65,0.3);
-  background: rgba(146,114,65,0.06);
-  border-top: 2px solid var(--gold);
-  display: grid; grid-template-columns: 1fr auto; gap: 28px; align-items: center;
-}
-.card {
-  padding: 24px 26px 20px;
-  border: 1px solid rgba(146,114,65,0.2);
-  background: rgba(146,114,65,0.04);
-  border-top: 2px solid var(--gold);
-}
-.card-name { font-family: var(--display); font-weight: 600; font-size: 28px; color: var(--gold-lt); margin-bottom: 7px; letter-spacing: 0.02em; }
-.card-desc { font-family: var(--body); font-size: 17px; line-height: 1.55; opacity: 0.6; }
-
-/* Brand-authentic logo containers (each respects its real background colour) */
-.brand-logo {
-  display: flex; align-items: center; justify-content: center;
-  height: 50px; width: auto; min-width: 90px;
-  padding: 8px 14px; border-radius: 4px;
-  margin-bottom: 12px; overflow: hidden;
-  box-shadow: 0 2px 10px rgba(0,0,0,0.25);
-}
-.brand-logo img { height: 100%; width: auto; object-fit: contain; display: block; }
-.brand-logo--apple    { background: #000; }
-.brand-logo--emirates { background: #d71921; }
-.brand-logo--aramco   { background: linear-gradient(135deg, #00843D 0%, #005EB8 100%); }
+/* (legacy slide-03 colored brand cards removed in v10 — replaced by .why-* below) */
 
 /* ── Callout ── */
 .callout {
@@ -281,34 +252,35 @@ html, body { width: 100%; height: 100%; overflow: hidden; background: #000;
 .why-grid {
   flex: 1;
   display: grid;
-  grid-template-columns: 58fr 42fr;
-  gap: 38px;
-  margin-top: 26px;
+  grid-template-columns: 56fr 44fr;
+  gap: 48px;
+  margin-top: 18px;
   direction: ltr;
   align-items: stretch;
 }
 .why-brands {
-  display: flex; flex-direction: column; gap: 14px; direction: rtl;
+  display: flex; flex-direction: column; gap: 16px; direction: rtl;
+  height: 100%;
 }
 .why-card {
   flex: 1;
-  padding: 24px 30px;
+  padding: 28px 34px;
   border-top: 2px solid rgba(146,114,65,0.55);
   background: linear-gradient(135deg, rgba(146,114,65,0.09) 0%, rgba(146,114,65,0.02) 100%);
   display: grid; grid-template-columns: 1fr auto;
-  gap: 22px; align-items: center; direction: rtl;
+  gap: 24px; align-items: center; direction: rtl;
   position: relative;
 }
 .why-card--finale {
   border-top-color: var(--gold);
-  background: linear-gradient(135deg, rgba(146,114,65,0.18) 0%, rgba(146,114,65,0.04) 100%);
-  box-shadow: 0 12px 40px rgba(146,114,65,0.08), inset 0 1px 0 rgba(146,114,65,0.2);
+  background: linear-gradient(135deg, rgba(146,114,65,0.20) 0%, rgba(146,114,65,0.04) 100%);
+  box-shadow: 0 12px 40px rgba(146,114,65,0.10), inset 0 1px 0 rgba(146,114,65,0.22);
 }
-.why-card-text { display: flex; flex-direction: column; gap: 6px; min-width: 0; }
+.why-card-text { display: flex; flex-direction: column; gap: 8px; min-width: 0; }
 .why-card-name {
   font-family: var(--display);
   font-weight: 600;
-  font-size: 40px;
+  font-size: 44px;
   line-height: 1;
   color: var(--gold-lt);
   letter-spacing: 0.005em;
@@ -316,18 +288,18 @@ html, body { width: 100%; height: 100%; overflow: hidden; background: #000;
 .why-card--finale .why-card-name { color: var(--gold); text-shadow: 0 0 24px rgba(146,114,65,0.45); }
 .why-card-desc {
   font-family: var(--body);
-  font-size: 17.5px;
-  line-height: 1.55;
-  color: rgba(255,255,255,0.65);
+  font-size: 18px;
+  line-height: 1.6;
+  color: rgba(255,255,255,0.7);
 }
 .why-card-tag {
   font-family: var(--mono);
-  font-size: 9px;
+  font-size: 9.5px;
   letter-spacing: 0.32em;
-  color: rgba(146,114,65,0.7);
+  color: rgba(146,114,65,0.75);
   text-transform: uppercase;
-  padding: 7px 13px;
-  border: 1px solid rgba(146,114,65,0.32);
+  padding: 8px 14px;
+  border: 1px solid rgba(146,114,65,0.34);
   border-radius: 999px;
   white-space: nowrap;
   direction: ltr;
@@ -346,12 +318,15 @@ html, body { width: 100%; height: 100%; overflow: hidden; background: #000;
   overflow: hidden;
   background: #000;
   position: relative;
-  box-shadow: 0 24px 70px rgba(0,0,0,0.78), 0 0 0 1px rgba(146,114,65,0.16);
-  align-self: stretch;
-  width: 100%;
-  max-width: 360px;
+  box-shadow: 0 28px 80px rgba(0,0,0,0.82), 0 0 0 1px rgba(146,114,65,0.18);
+  /* Bigger video: derive its size from the column height (no fixed cap), so it
+     fills the available slide vertical space and looks like a real phone. */
+  height: 100%;
+  width: auto;
+  max-width: 100%;
   justify-self: center;
-  border: 1px solid rgba(146,114,65,0.18);
+  align-self: stretch;
+  border: 1px solid rgba(146,114,65,0.2);
 }
 .why-video iframe {
   position: absolute; inset: 0;
@@ -617,6 +592,38 @@ html, body { width: 100%; height: 100%; overflow: hidden; background: #000;
   .arc-num { margin-bottom: 0; min-width: 56px; }
   .arc-title { font-size: 17px !important; }
   .overview-quote { font-size: 16px !important; padding: 16px 18px; }
+
+  /* Slide 04 (الفكرة) — push tower to the LEFT, dark overlay over the RIGHT
+     so the Arabic text on the right reads cleanly while the tower stays
+     visible on the left of the viewport. */
+  .slide[data-label="04 الفكرة"] .ph-img {
+    background-position: 92% center !important;
+    background-size: cover !important;
+  }
+  .slide[data-label="04 الفكرة"] .ph-ov {
+    background:
+      linear-gradient(270deg,
+        rgba(0,0,0,0.94) 0%,
+        rgba(0,0,0,0.78) 30%,
+        rgba(0,0,0,0.42) 58%,
+        rgba(0,0,0,0.18) 88%,
+        rgba(0,0,0,0.10) 100%),
+      linear-gradient(to bottom,
+        rgba(0,0,0,0.45) 0%,
+        rgba(0,0,0,0.10) 14%,
+        transparent 30%,
+        transparent 78%,
+        rgba(0,0,0,0.55) 100%) !important;
+  }
+  /* Bring text away from the now-visible tower on the left edge */
+  .slide[data-label="04 الفكرة"] .cv {
+    max-width: 100% !important;
+    padding-inline-start: 8px !important;
+  }
+  .slide[data-label="04 الفكرة"] blockquote {
+    font-size: 30px !important;
+    line-height: 1.28 !important;
+  }
 }
 </style>
 </head>
