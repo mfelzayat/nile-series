@@ -178,74 +178,150 @@ html, body { width: 100%; height: 100%; overflow: hidden; background: #000;
 .step-n { font-family: var(--mono); font-size: 12px; letter-spacing: 0.22em; color: var(--gold); direction: ltr; }
 .step-t { font-family: var(--body); font-size: 24px; line-height: 1.6; opacity: 0.86; }
 
-/* ── Slide 02 ── */
+/* ── Slide 02 — refreshed (phone-as-hero) ── */
 .s02-grid {
   flex: 1;
   display: grid;
-  grid-template-columns: 56fr 44fr;
-  gap: 0;
+  grid-template-columns: 1fr 320px;
+  gap: 56px;
   padding-top: 18px;
   direction: ltr;
+  align-items: stretch;
 }
 .s02-left {
   display: flex; flex-direction: column; direction: rtl;
-  padding-inline-end: 56px;
-  border-inline-end: 1px solid var(--rule);
+  min-width: 0;
 }
 .s02-right {
   display: flex; flex-direction: column; direction: rtl;
-  padding-inline-start: 52px;
+  align-items: center; justify-content: center;
+  padding-inline-start: 28px;
+  border-inline-start: 1px solid var(--rule);
+  position: relative;
 }
-.s02-stats { display: grid; grid-template-columns: 1fr 1fr; gap: 14px 36px; margin-top: 22px; }
+.s02-right::before {
+  content: ""; position: absolute; inset: -8% -22% -8% 0;
+  background: radial-gradient(ellipse at 50% 50%, rgba(146,114,65,0.18) 0%, transparent 65%);
+  filter: blur(40px);
+  z-index: 0; pointer-events: none;
+}
+.s02-stats { display: grid; grid-template-columns: 1fr 1fr; gap: 14px 28px; margin-top: 22px; }
 .s02-stat { border-top: 1px solid rgba(255,255,255,0.12); padding-top: 14px; }
 .s02-stat-n {
-  font-family: var(--mono); font-size: 44px; line-height: 1; color: var(--gold-lt);
+  font-family: var(--mono); font-size: 42px; line-height: 1; color: var(--gold-lt);
   text-shadow: 0 0 40px rgba(184,152,96,0.3);
 }
 .s02-stat-l { font-family: var(--body); font-size: 15px; line-height: 1.55; color: rgba(255,255,255,0.55); margin-top: 8px; }
 
-/* ── Mechanism items ── */
+/* ── Mechanism items (compact 2x2) ── */
+.mech-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 0 32px; margin-top: 22px; }
 .mech-item {
-  display: flex; gap: 16px; align-items: flex-start;
-  padding: 13px 0; border-bottom: 1px solid var(--rule);
+  display: flex; gap: 14px; align-items: flex-start;
+  padding: 11px 0; border-top: 1px solid var(--rule);
 }
 .mech-n { font-family: var(--mono); font-size: 10.5px; letter-spacing: 0.22em; color: var(--gold); flex-shrink: 0; padding-top: 4px; direction: ltr; }
-.mech-title { font-family: var(--body); font-weight: 700; font-size: 19px; margin-bottom: 4px; }
-.mech-desc { font-family: var(--body); font-size: 15px; line-height: 1.55; opacity: 0.5; }
+.mech-title { font-family: var(--body); font-weight: 700; font-size: 17px; margin-bottom: 3px; }
+.mech-desc { font-family: var(--body); font-size: 14px; line-height: 1.5; opacity: 0.55; }
 
-/* ── Phone mockup ── */
+/* ── Phone mockup — bigger, hero, simulated Reels UI ── */
 .phone-mockup-wrap {
   display: flex; flex-direction: column; align-items: center; justify-content: center;
-  gap: 10px;
+  gap: 14px; position: relative; z-index: 1;
 }
 .phone-mockup {
-  width: 156px; height: 310px;
-  border-radius: 32px;
-  border: 4px solid rgba(255,255,255,0.14);
+  width: 260px; height: 540px;
+  border-radius: 42px;
+  border: 6px solid #1a1a1c;
   background: #000;
   overflow: hidden;
-  box-shadow: 0 0 0 1px rgba(255,255,255,0.04), 0 20px 56px rgba(0,0,0,0.85);
-  transform: perspective(800px) rotateY(-6deg) rotateX(2deg);
+  box-shadow:
+    0 0 0 1px rgba(146,114,65,0.18),
+    0 0 60px rgba(146,114,65,0.18),
+    0 30px 80px rgba(0,0,0,0.9);
+  transform: perspective(1200px) rotateY(-7deg) rotateX(2deg);
   position: relative; flex-shrink: 0;
+  animation: phoneFloat 6s ease-in-out infinite;
+}
+@keyframes phoneFloat {
+  0%, 100% { transform: perspective(1200px) rotateY(-7deg) rotateX(2deg) translateY(0); }
+  50%      { transform: perspective(1200px) rotateY(-7deg) rotateX(2deg) translateY(-6px); }
 }
 .phone-notch {
   position: absolute; top: 0; left: 50%; transform: translateX(-50%);
-  width: 60px; height: 16px; border-radius: 0 0 10px 10px;
+  width: 96px; height: 26px; border-radius: 0 0 14px 14px;
   background: #000; z-index: 3;
 }
 .phone-screen {
   position: absolute; inset: 0;
-  background-image: url('https://nile-developments.com/mainsite/wp-content/uploads/2025/06/2-TEAM-1-scaled.webp');
+  background-image:
+    linear-gradient(to bottom, rgba(0,0,0,0.55) 0%, transparent 22%, transparent 60%, rgba(0,0,0,0.85) 100%),
+    url('https://nile-developments.com/mainsite/wp-content/uploads/2025/06/2-TEAM-1-scaled.webp');
   background-size: cover; background-position: center; z-index: 1;
 }
+.phone-status {
+  position: absolute; top: 9px; left: 22px; right: 22px;
+  display: flex; justify-content: space-between; align-items: center;
+  font-family: var(--mono); font-size: 11px; font-weight: 600;
+  color: rgba(255,255,255,0.95); z-index: 4; direction: ltr;
+}
+.phone-status-icons { display: flex; gap: 5px; align-items: center; font-size: 10px; }
+.phone-reel-meta {
+  position: absolute; bottom: 80px; right: 18px; left: 60px;
+  z-index: 4; direction: rtl;
+}
+.phone-reel-handle {
+  font-family: var(--body); font-weight: 700; font-size: 14px;
+  color: rgba(255,255,255,0.95); line-height: 1.3;
+  text-shadow: 0 1px 6px rgba(0,0,0,0.6);
+}
+.phone-reel-cap {
+  font-family: var(--body); font-size: 12.5px;
+  color: rgba(255,255,255,0.88); line-height: 1.45; margin-top: 6px;
+  text-shadow: 0 1px 4px rgba(0,0,0,0.6);
+}
+.phone-reel-tag {
+  font-family: var(--body); font-size: 11.5px;
+  color: var(--gold-lt); margin-top: 4px;
+  text-shadow: 0 1px 3px rgba(0,0,0,0.7);
+}
+.phone-side-actions {
+  position: absolute; bottom: 90px; left: 12px;
+  display: flex; flex-direction: column; align-items: center; gap: 14px;
+  z-index: 4; direction: ltr;
+}
+.phone-side-stack {
+  display: flex; flex-direction: column; align-items: center; gap: 4px;
+}
+.phone-side-btn {
+  width: 32px; height: 32px; border-radius: 50%;
+  background: rgba(255,255,255,0.16);
+  border: 1px solid rgba(255,255,255,0.22);
+  display: flex; align-items: center; justify-content: center;
+  font-size: 14px; color: #fff;
+  backdrop-filter: blur(6px);
+}
+.phone-side-num {
+  font-family: var(--mono); font-size: 9.5px; color: rgba(255,255,255,0.95);
+  text-shadow: 0 1px 3px rgba(0,0,0,0.7);
+}
+.phone-progress {
+  position: absolute; bottom: 28px; left: 18px; right: 18px;
+  height: 2px; border-radius: 2px;
+  background: rgba(255,255,255,0.2); z-index: 4; overflow: hidden;
+}
+.phone-progress-fill {
+  position: absolute; inset: 0 64% 0 0;
+  background: var(--gold-lt); border-radius: 2px;
+}
 .phone-home-indicator {
-  position: absolute; bottom: 7px; left: 50%; transform: translateX(-50%);
-  width: 44px; height: 3px; border-radius: 2px;
-  background: rgba(255,255,255,0.22); z-index: 4;
+  position: absolute; bottom: 9px; left: 50%; transform: translateX(-50%);
+  width: 96px; height: 4px; border-radius: 2px;
+  background: rgba(255,255,255,0.4); z-index: 5;
 }
 .phone-label {
-  font-family: var(--mono); font-size: 9.5px; letter-spacing: 0.16em;
-  color: rgba(146,114,65,0.7); text-transform: uppercase; text-align: center; direction: rtl;
+  font-family: var(--mono); font-size: 10px; letter-spacing: 0.22em;
+  color: rgba(146,114,65,0.78); text-transform: uppercase; text-align: center; direction: rtl;
+  position: relative; z-index: 1;
 }
 
 /* ── Slide 03 — refreshed (typography-led, no broken logo boxes) ── */
@@ -593,8 +669,9 @@ html, body { width: 100%; height: 100%; overflow: hidden; background: #000;
   .t-lead { font-size: 17px !important; }
   .t-body { font-size: 15px !important; }
   .s02-grid { grid-template-columns: 1fr !important; gap: 32px; }
-  .s02-right { padding-inline-start: 0 !important; border-inline-start: none !important; padding-top: 0; }
+  .s02-right { padding-inline-start: 0 !important; border-inline-start: none !important; padding-top: 18px !important; padding-bottom: 8px !important; }
   .s02-left { padding-inline-end: 0 !important; border-inline-end: none !important; }
+  .mech-grid { grid-template-columns: 1fr !important; gap: 0 !important; margin-top: 18px !important; }
   .cards2 { grid-template-columns: 1fr !important; }
   .card-aramco { grid-template-columns: 1fr !important; }
   /* Slide 03 refreshed — stack brands then video on mobile */
@@ -624,7 +701,22 @@ html, body { width: 100%; height: 100%; overflow: hidden; background: #000;
   .ep-col-bg { position: absolute !important; }
   .ep-col-ov { position: absolute !important; }
   .ep-col-video { max-height: 360px; }
-  .phone-mockup-wrap { display: none !important; }
+  /* Slide 02 phone — stays VISIBLE on mobile, sized appropriately */
+  .phone-mockup-wrap { display: flex !important; }
+  .phone-mockup {
+    width: 240px !important; height: 500px !important;
+    transform: none !important; animation: none !important;
+    border-radius: 38px !important;
+  }
+  .phone-notch { width: 86px !important; height: 22px !important; }
+  .phone-side-actions { bottom: 84px !important; left: 10px !important; gap: 12px !important; }
+  .phone-side-btn { width: 30px !important; height: 30px !important; font-size: 13px !important; }
+  .phone-reel-meta { bottom: 76px !important; right: 16px !important; left: 56px !important; }
+  .phone-reel-handle { font-size: 13px !important; }
+  .phone-reel-cap { font-size: 12px !important; }
+  .phone-reel-tag { font-size: 11px !important; }
+  .phone-progress { bottom: 26px !important; }
+  .phone-status { font-size: 10px !important; }
   blockquote { font-size: 32px !important; }
   .s02-stat-n { font-size: 30px !important; }
   /* Series overview arc: stack vertically on mobile */
@@ -726,14 +818,13 @@ html, body { width: 100%; height: 100%; overflow: hidden; background: #000;
 
   <div class="s02-grid">
 
-    <!-- LEFT: heading + stats + callout -->
+    <!-- LEFT: heading + stats + mech grid + callout -->
     <div class="s02-left">
       <div class="kicker" style="margin-bottom:12px;">فورمات المستقبل</div>
       <h2 style="font-family:var(--body);font-weight:900;font-size:48px;line-height:1.18;direction:rtl;">
-        لا تُشرَح. لا تُروَّج.<br>
+        لا تُشرَح. لا تُروَّج.
         <span style="color:var(--gold-lt);">تَترك المشاهد يرى.</span>
       </h2>
-      <div class="rule" style="margin:18px 0 0;"></div>
 
       <div class="s02-stats">
         <div class="s02-stat">
@@ -754,6 +845,38 @@ html, body { width: 100%; height: 100%; overflow: hidden; background: #000;
         </div>
       </div>
 
+      <div class="kicker" style="margin-top:24px;">لماذا يعمل؟</div>
+      <div class="mech-grid">
+        <div class="mech-item">
+          <div class="mech-n">01</div>
+          <div>
+            <div class="mech-title">الانتباه الفوري</div>
+            <div class="mech-desc">صدمة بصرية خلال 3 ثوانٍ — قبل أن يفكر الإصبع في السحب</div>
+          </div>
+        </div>
+        <div class="mech-item">
+          <div class="mech-n">02</div>
+          <div>
+            <div class="mech-title">القصة أولاً</div>
+            <div class="mech-desc">لا رسالة تجارية صريحة — الإقناع يحدث ضمنياً عبر الشخصية</div>
+          </div>
+        </div>
+        <div class="mech-item">
+          <div class="mech-n">03</div>
+          <div>
+            <div class="mech-title">الخوارزمية تفضّلها</div>
+            <div class="mech-desc">معدل إكمال عالٍ يُضخّم الوصول العضوي على كل المنصات</div>
+          </div>
+        </div>
+        <div class="mech-item">
+          <div class="mech-n">04</div>
+          <div>
+            <div class="mech-title">الانتشار الذاتي</div>
+            <div class="mech-desc">المشاهد يُعيد مشاركتها لأنها تبدو قيمة — لا إعلاناً مدفوعاً</div>
+          </div>
+        </div>
+      </div>
+
       <div style="margin-top:auto; padding:16px 20px; border-inline-start:3px solid var(--gold); background:rgba(146,114,65,0.08);">
         <p style="font-family:var(--body); font-size:17px; line-height:1.72; opacity:0.85; direction:rtl;">
           حين تُجمع الحلقات معاً تتحوّل من محتوى متفرق إلى
@@ -763,47 +886,54 @@ html, body { width: 100%; height: 100%; overflow: hidden; background: #000;
       </div>
     </div>
 
-    <!-- RIGHT: mechanism + phone mockup -->
-    <div class="s02-right" style="border-inline-start:1px solid var(--rule);">
-      <div class="kicker" style="margin-bottom:14px;">لماذا يعمل؟</div>
-      <div class="mech-item">
-        <div class="mech-n">01</div>
-        <div>
-          <div class="mech-title">الانتباه الفوري</div>
-          <div class="mech-desc">صدمة بصرية خلال 3 ثوانٍ — قبل أن يفكر الإصبع في السحب</div>
-        </div>
-      </div>
-      <div class="mech-item">
-        <div class="mech-n">02</div>
-        <div>
-          <div class="mech-title">القصة أولاً</div>
-          <div class="mech-desc">لا رسالة تجارية صريحة — الإقناع يحدث ضمنياً عبر الشخصية</div>
-        </div>
-      </div>
-      <div class="mech-item">
-        <div class="mech-n">03</div>
-        <div>
-          <div class="mech-title">الخوارزمية تفضّلها</div>
-          <div class="mech-desc">معدل إكمال عالٍ يُضخّم الوصول العضوي على كل المنصات</div>
-        </div>
-      </div>
-      <div class="mech-item" style="border-bottom:none;">
-        <div class="mech-n">04</div>
-        <div>
-          <div class="mech-title">الانتشار الذاتي</div>
-          <div class="mech-desc">المشاهد يُعيد مشاركتها لأنها تبدو قيمة — لا إعلاناً مدفوعاً</div>
-        </div>
-      </div>
+    <!-- RIGHT: hero phone — simulated Reels UI, animated, dominant -->
+    <div class="s02-right">
+      <div class="phone-mockup-wrap">
+        <div class="phone-mockup">
+          <div class="phone-notch"></div>
+          <div class="phone-screen"></div>
 
-      <div style="margin-top:auto; display:flex; justify-content:center; padding-bottom:4px;">
-        <div class="phone-mockup-wrap">
-          <div class="phone-mockup">
-            <div class="phone-notch"></div>
-            <div class="phone-screen"></div>
-            <div class="phone-home-indicator"></div>
+          <!-- iOS status bar -->
+          <div class="phone-status">
+            <span class="phone-status-time">9:41</span>
+            <div class="phone-status-icons">
+              <span>●●●</span>
+              <span>📶</span>
+              <span>🔋</span>
+            </div>
           </div>
-          <div class="phone-label">من حلقة اللي مالوش مثيل</div>
+
+          <!-- Right-side action stack (Reels-style) -->
+          <div class="phone-side-actions">
+            <div class="phone-side-stack">
+              <div class="phone-side-btn">♥</div>
+              <span class="phone-side-num">12K</span>
+            </div>
+            <div class="phone-side-stack">
+              <div class="phone-side-btn">💬</div>
+              <span class="phone-side-num">487</span>
+            </div>
+            <div class="phone-side-stack">
+              <div class="phone-side-btn">↗</div>
+              <span class="phone-side-num">3.2K</span>
+            </div>
+            <div class="phone-side-stack">
+              <div class="phone-side-btn">⋯</div>
+            </div>
+          </div>
+
+          <!-- Caption + handle -->
+          <div class="phone-reel-meta">
+            <div class="phone-reel-handle">@nile.developments</div>
+            <div class="phone-reel-cap">في غرفة العمليات، الفريق يستعد لتسليم ٣١ شمال…</div>
+            <div class="phone-reel-tag">صنّاع القيمة · حلقة 03</div>
+          </div>
+
+          <!-- Progress bar -->
+          <div class="phone-progress"><div class="phone-progress-fill"></div></div>
+          <div class="phone-home-indicator"></div>
         </div>
+        <div class="phone-label">معاينة من «اللي مالوش مثيل»</div>
       </div>
     </div>
 
