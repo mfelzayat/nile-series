@@ -1,413 +1,1331 @@
+
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5">
-  <title>صنّاع القيمة · Strike Media × Nile Developments</title>
-  <meta name="description" content="موسم درامي قصير · خمس حلقات تعرض نايل من الداخل وتُمهِّد للمشروع القادم في النهر الأخضر.">
-  <meta name="theme-color" content="#0a0a0c">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>صنّاع القيمة · Nile Developments</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;500;600;700;900&family=IBM+Plex+Mono:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+@font-face {
+  font-family: 'Chronicle';
+  src: url('https://nile-developments.com/mainsite/wp-content/uploads/ds1-elements/fonts/ChronicleDisplay-Semi.woff2') format('woff2'),
+       url('https://nile-developments.com/mainsite/wp-content/uploads/ds1-elements/fonts/ChronicleDisplay-Semi.woff') format('woff');
+  font-weight: 600; font-style: normal; font-display: swap;
+}
 
-  <!-- Favicons -->
-  <link rel="icon" href="/favicon.ico" sizes="any">
-  <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
-  <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
-  <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
-  <link rel="manifest" href="/site.webmanifest">
+:root {
+  --gold:    #927241;
+  --gold-lt: #b89860;
+  --ink:     #0f0f0f;
+  --dark:    #161616;
+  --paper:   #f5f2ec;
+  --white:   #ffffff;
+  --muted:   rgba(255,255,255,0.5);
+  --rule:    rgba(255,255,255,0.11);
+  --display: 'Chronicle', Georgia, serif;
+  --body:    'Cairo', system-ui, sans-serif;
+  --mono:    'IBM Plex Mono', ui-monospace, monospace;
+}
 
-  <!-- Open Graph / social -->
-  <meta property="og:title" content="صنّاع القيمة · Strike Media × Nile Developments">
-  <meta property="og:description" content="موسم درامي قصير · خمس حلقات تعرض نايل من الداخل وتُمهِّد للمشروع القادم في النهر الأخضر.">
-  <meta property="og:type" content="website">
-  <meta property="og:image" content="/og-image.png">
-  <meta property="og:url" content="https://nile-series.strikestudio.net/">
-  <meta name="twitter:card" content="summary_large_image">
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html, body { width: 100%; height: 100%; overflow: hidden; background: #000;
+  -webkit-font-smoothing: antialiased; text-rendering: optimizeLegibility; }
 
-  <!-- Fonts: Noto Sans Arabic + Inter -->
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Arabic:wght@400;500;700;900&family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+/* ── Subtle grain pattern (used by photo overlays) ── */
+.grain::after {
+  content: ""; position: absolute; inset: 0; pointer-events: none;
+  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='200' height='200'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 0  0 0 0 0 0  0 0 0 0 0  0 0 0 0.55 0'/></filter><rect width='100%25' height='100%25' filter='url(%23n)' opacity='0.55'/></svg>");
+  opacity: 0.06; mix-blend-mode: overlay; z-index: 1;
+}
 
-  <style>
-    :root {
-      --ink:        #0a0a0c;
-      --body:      #1a1410;
-      --cream:     #f8f1e3;
-      --taupe:     #b8a98c;
-      --warmGrey:  #7a7062;
-      --gold:      #c9a96a;
-      --goldDeep:  #9c7b36;
-      --red:       #9c2820;
-    }
-    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-    html, body {
-      background: var(--ink);
-      color: var(--cream);
-      font-family: "Noto Sans Arabic", "Inter", system-ui, sans-serif;
-      font-size: 16px;
-      line-height: 1.65;
-      -webkit-font-smoothing: antialiased;
-      min-height: 100vh;
-    }
-    body {
-      background:
-        radial-gradient(ellipse 80% 50% at 50% 0%, rgba(201, 169, 106, 0.08), transparent 70%),
-        radial-gradient(ellipse 60% 40% at 50% 100%, rgba(156, 40, 32, 0.05), transparent 70%),
-        var(--ink);
-    }
+/* ── Stage ── */
+#wrap {
+  position: absolute; inset: 0;
+  display: flex; align-items: center; justify-content: center;
+}
+#stage {
+  width: 1920px; height: 1080px;
+  position: relative; transform-origin: center center;
+  overflow: hidden; flex-shrink: 0; background: var(--ink);
+}
 
-    /* ── HERO ───────────────────────────────────────────── */
-    .hero {
-      min-height: 100vh;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      padding: 4rem 2rem 6rem;
-      text-align: center;
-      position: relative;
-    }
-    .hero__brand-strip {
-      position: absolute;
-      top: 2rem; left: 0; right: 0;
-      display: flex;
-      justify-content: center;
-      gap: 2rem;
-      font-family: "Inter", sans-serif;
-      font-size: 0.7rem;
-      font-weight: 600;
-      letter-spacing: 0.4em;
-      color: var(--gold);
-      text-transform: uppercase;
-    }
-    .hero__brand-strip span:nth-child(2) { color: var(--warmGrey); }
-    .hero__logo {
-      width: 140px;
-      height: 140px;
-      margin-bottom: 3rem;
-      filter: drop-shadow(0 8px 30px rgba(201, 169, 106, 0.25));
-      border-radius: 14%;
-    }
-    .hero__title {
-      font-family: "Noto Sans Arabic", sans-serif;
-      font-size: clamp(3.5rem, 12vw, 8.5rem);
-      font-weight: 900;
-      line-height: 1;
-      letter-spacing: 0.02em;
-      color: var(--cream);
-      margin-bottom: 1rem;
-      background: linear-gradient(180deg, var(--cream) 0%, #d8c8a0 100%);
-      -webkit-background-clip: text; background-clip: text;
-      -webkit-text-fill-color: transparent;
-    }
-    .hero__sub {
-      font-family: "Noto Sans Arabic", sans-serif;
-      font-size: clamp(1rem, 2.4vw, 1.4rem);
-      font-weight: 400;
-      color: var(--taupe);
-      letter-spacing: 0.04em;
-      margin-bottom: 0.5rem;
-    }
-    .hero__sub--accent {
-      color: var(--gold);
-      font-weight: 700;
-    }
-    .hero__rule {
-      width: 90px;
-      height: 1.5px;
-      background: linear-gradient(90deg, transparent, var(--gold), transparent);
-      margin: 3rem auto 2rem;
-    }
-    .hero__pitch {
-      font-family: "Noto Sans Arabic", sans-serif;
-      font-size: clamp(1.1rem, 2.6vw, 1.5rem);
-      font-weight: 400;
-      color: var(--cream);
-      max-width: 640px;
-      line-height: 1.7;
-      opacity: 0.92;
-    }
-    .hero__pitch strong {
-      color: var(--gold);
-      font-weight: 700;
-    }
-    .hero__cta-row {
-      margin-top: 3rem;
-      font-family: "Inter", sans-serif;
-      font-size: 0.7rem;
-      font-weight: 600;
-      letter-spacing: 0.3em;
-      color: var(--warmGrey);
-      text-transform: uppercase;
-    }
-    .hero__cta-row::before, .hero__cta-row::after {
-      content: "·"; margin: 0 0.6rem; color: var(--gold);
-    }
+/* ── Slides — cinematic transitions ── */
+.slide {
+  position: absolute; inset: 0;
+  width: 1920px; height: 1080px;
+  padding: 52px 100px 54px;
+  display: flex; flex-direction: column;
+  direction: rtl;
+  opacity: 0; pointer-events: none;
+  transform: translateY(8px) scale(0.99);
+  transition: opacity 0.65s cubic-bezier(0.22,1,0.36,1),
+              transform 0.65s cubic-bezier(0.22,1,0.36,1);
+}
+.slide.active {
+  opacity: 1; pointer-events: auto;
+  transform: translateY(0) scale(1);
+}
 
-    /* ── EPISODES ───────────────────────────────────────── */
-    .episodes {
-      padding: 6rem 2rem 4rem;
-      max-width: 1100px;
-      margin: 0 auto;
-    }
-    .episodes__intro {
-      text-align: center;
-      margin-bottom: 4rem;
-    }
-    .episodes__intro-eyebrow {
-      font-family: "Inter", sans-serif;
-      font-size: 0.7rem;
-      font-weight: 700;
-      letter-spacing: 0.4em;
-      color: var(--gold);
-      text-transform: uppercase;
-      margin-bottom: 1rem;
-    }
-    .episodes__intro-title {
-      font-family: "Noto Sans Arabic", sans-serif;
-      font-size: clamp(2rem, 5vw, 3rem);
-      font-weight: 700;
-      color: var(--cream);
-      margin-bottom: 1rem;
-    }
-    .episodes__intro-sub {
-      font-family: "Noto Sans Arabic", sans-serif;
-      font-size: clamp(0.95rem, 2vw, 1.1rem);
-      color: var(--taupe);
-      max-width: 540px;
-      margin: 0 auto;
-    }
-    .episode-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-      gap: 1.5rem;
-    }
-    .episode {
-      padding: 2.2rem 1.8rem;
-      background: linear-gradient(180deg, rgba(201, 169, 106, 0.04), rgba(201, 169, 106, 0.01));
-      border: 1px solid rgba(201, 169, 106, 0.15);
-      border-radius: 12px;
-      transition: transform .25s ease, border-color .25s ease, background .25s ease;
-      cursor: default;
-    }
-    .episode:hover {
-      transform: translateY(-3px);
-      border-color: rgba(201, 169, 106, 0.4);
-      background: linear-gradient(180deg, rgba(201, 169, 106, 0.08), rgba(201, 169, 106, 0.02));
-    }
-    .episode__num {
-      font-family: "Inter", sans-serif;
-      font-size: 0.75rem;
-      font-weight: 700;
-      letter-spacing: 0.3em;
-      color: var(--gold);
-      margin-bottom: 1rem;
-    }
-    .episode__title {
-      font-family: "Noto Sans Arabic", sans-serif;
-      font-size: 1.55rem;
-      font-weight: 700;
-      color: var(--cream);
-      margin-bottom: 0.9rem;
-      line-height: 1.3;
-    }
-    .episode__desc {
-      font-family: "Noto Sans Arabic", sans-serif;
-      font-size: 0.95rem;
-      color: var(--taupe);
-      line-height: 1.7;
-      margin-bottom: 1.5rem;
-      min-height: 4.5em;
-    }
-    .episode__meta {
-      display: flex;
-      justify-content: space-between;
-      padding-top: 1.2rem;
-      border-top: 1px solid rgba(201, 169, 106, 0.12);
-      font-family: "Inter", sans-serif;
-      font-size: 0.7rem;
-      letter-spacing: 0.2em;
-      color: var(--warmGrey);
-      text-transform: uppercase;
-    }
-    .episode__meta strong {
-      color: var(--gold);
-      font-weight: 700;
-    }
-    .episode--finale {
-      background: linear-gradient(180deg, rgba(156, 40, 32, 0.08), rgba(156, 40, 32, 0.02));
-      border-color: rgba(156, 40, 32, 0.25);
-    }
-    .episode--finale:hover {
-      border-color: rgba(156, 40, 32, 0.5);
-    }
-    .episode--finale .episode__num { color: #d65a52; }
-    .episode--finale .episode__title { color: var(--cream); }
+.s-dark  { background: var(--dark);  color: var(--white); }
+.s-black { background: #0a0a0a;       color: var(--white); }
+.s-photo { color: var(--white); }
 
-    /* ── FOOTER ─────────────────────────────────────────── */
-    footer {
-      padding: 4rem 2rem 3rem;
-      text-align: center;
-      border-top: 1px solid rgba(201, 169, 106, 0.1);
-      margin-top: 4rem;
-    }
-    footer .tagline {
-      font-family: "Noto Sans Arabic", sans-serif;
-      font-size: clamp(0.95rem, 2vw, 1.15rem);
-      font-style: italic;
-      color: var(--taupe);
-      margin-bottom: 0.5rem;
-    }
-    footer .tagline--accent {
-      color: var(--gold);
-      font-weight: 700;
-    }
-    footer .credit {
-      margin-top: 2rem;
-      font-family: "Inter", sans-serif;
-      font-size: 0.7rem;
-      font-weight: 600;
-      letter-spacing: 0.4em;
-      color: var(--warmGrey);
-      text-transform: uppercase;
-    }
-    footer .credit a {
-      color: var(--gold);
-      text-decoration: none;
-      transition: color .2s;
-    }
-    footer .credit a:hover {
-      color: var(--cream);
-    }
+.s-photo .ph-img {
+  position: absolute; inset: 0; background-size: cover; background-position: center;
+  z-index: 0;
+}
+.s-photo .ph-ov {
+  position: absolute; inset: 0; z-index: 1;
+}
+.slide > .chrome,
+.slide > .cv,
+.slide > .foot,
+.slide > .slide-body { position: relative; z-index: 2; }
 
-    /* ── responsive tweaks ──────────────────────────────── */
-    @media (max-width: 600px) {
-      .hero__brand-strip {
-        flex-direction: column;
-        gap: 0.4rem;
-        font-size: 0.6rem;
-      }
-      .hero__logo { width: 100px; height: 100px; margin-bottom: 2rem; }
-      .episode { padding: 1.8rem 1.5rem; }
-    }
+/* ── Animations ── */
+@keyframes slideUp {
+  from { transform: translateY(18px); opacity: 0; }
+  to   { transform: translateY(0);    opacity: 1; }
+}
+@keyframes slideUpSoft {
+  from { transform: translateY(10px); opacity: 0.4; }
+  to   { transform: translateY(0);    opacity: 1; }
+}
+.slide.active .chrome     { animation: slideUp 0.4s ease 0.04s both; }
+.slide.active .cv         { animation: slideUp 0.55s cubic-bezier(0.22,1,0.36,1) 0.12s both; }
+.slide.active .slide-body { animation: slideUp 0.55s cubic-bezier(0.22,1,0.36,1) 0.12s both; }
+.slide.active .foot       { animation: slideUp 0.4s ease 0.22s both; }
+.slide.active .ep-chrome  { animation: slideUp 0.4s ease 0.04s both; }
+.slide.active .ep-cols    { animation: slideUp 0.6s cubic-bezier(0.22,1,0.36,1) 0.14s both; }
+.slide.active .ep-foot    { animation: slideUp 0.4s ease 0.26s both; }
 
-    /* Honor users who prefer reduced motion */
-    @media (prefers-reduced-motion: reduce) {
-      .episode, .episode:hover { transition: none; transform: none; }
-    }
-  </style>
+/* ── Chrome ── */
+.chrome {
+  display: flex; justify-content: space-between; align-items: center;
+  direction: ltr; flex-shrink: 0;
+}
+.ch-l { display: flex; align-items: center; gap: 16px; }
+.ch-brand { font-family: var(--mono); font-size: 11px; letter-spacing: 0.24em; text-transform: uppercase; color: var(--muted); }
+.ch-sep { width: 1px; height: 13px; background: rgba(255,255,255,0.22); }
+.ch-tag { font-family: var(--mono); font-size: 11px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--muted); }
+.logo { height: 20px; filter: brightness(0) invert(1) opacity(0.7); }
+
+/* ── Content ── */
+.cv { flex: 1; display: flex; flex-direction: column; justify-content: center; }
+.slide-body { flex: 1; display: flex; flex-direction: column; }
+
+/* ── Footer ── */
+.foot {
+  display: flex; justify-content: space-between; align-items: center;
+  direction: ltr; flex-shrink: 0;
+  padding-top: 16px; border-top: 1px solid var(--rule);
+  margin-top: 8px;
+}
+.powered-by { height: 13px; opacity: 0.48; flex-shrink: 0; }
+.foot-lbl { font-family: var(--body); font-size: 13px; direction: rtl; color: rgba(255,255,255,0.38); flex: 1; text-align: center; }
+.foot-num { font-family: var(--mono); font-size: 11px; letter-spacing: 0.18em; color: rgba(255,255,255,0.28); }
+
+/* ── Type ── */
+.kicker { font-family: var(--mono); font-size: 11.5px; letter-spacing: 0.4em; text-transform: uppercase; color: var(--gold); }
+.t-display {
+  font-family: var(--body); font-weight: 900;
+  font-size: 168px; line-height: 0.92; letter-spacing: -0.02em;
+}
+.t-xl { font-family: var(--body); font-weight: 700; font-size: 70px; line-height: 1.14; }
+.t-h1 { font-family: var(--body); font-weight: 700; font-size: 54px; line-height: 1.22; }
+.t-h2 { font-family: var(--body); font-weight: 700; font-size: 40px; line-height: 1.3; }
+.t-lead { font-family: var(--body); font-size: 26px; line-height: 1.72; opacity: 0.92; }
+.t-body { font-family: var(--body); font-size: 20px; line-height: 1.85; opacity: 0.65; }
+.t-gold { color: var(--gold); }
+.t-gold-lt { color: var(--gold-lt); }
+.rule { height: 1px; background: var(--rule); }
+
+/* ── Stats ── */
+.stats { display: grid; grid-template-columns: repeat(3, 1fr); gap: 40px; }
+.stat { border-top: 1px solid rgba(255,255,255,0.14); padding-top: 16px; }
+.stat-n { font-family: var(--mono); font-size: 50px; line-height: 1; color: var(--gold-lt); }
+.stat-l { font-family: var(--body); font-size: 18px; line-height: 1.55; color: rgba(255,255,255,0.55); margin-top: 10px; }
+
+/* ── Brand cards (Slide 03) — colored containers, NO white-invert filter ── */
+.cards2 { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-bottom: 16px; }
+.card-aramco {
+  padding: 22px 26px 20px;
+  border: 1px solid rgba(146,114,65,0.3);
+  background: rgba(146,114,65,0.06);
+  border-top: 2px solid var(--gold);
+  display: grid; grid-template-columns: 1fr auto; gap: 28px; align-items: center;
+}
+.card {
+  padding: 24px 26px 20px;
+  border: 1px solid rgba(146,114,65,0.2);
+  background: rgba(146,114,65,0.04);
+  border-top: 2px solid var(--gold);
+}
+.card-name { font-family: var(--display); font-weight: 600; font-size: 28px; color: var(--gold-lt); margin-bottom: 7px; letter-spacing: 0.02em; }
+.card-desc { font-family: var(--body); font-size: 17px; line-height: 1.55; opacity: 0.6; }
+
+/* Brand-authentic logo containers (each respects its real background colour) */
+.brand-logo {
+  display: flex; align-items: center; justify-content: center;
+  height: 50px; width: auto; min-width: 90px;
+  padding: 8px 14px; border-radius: 4px;
+  margin-bottom: 12px; overflow: hidden;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.25);
+}
+.brand-logo img { height: 100%; width: auto; object-fit: contain; display: block; }
+.brand-logo--apple    { background: #000; }
+.brand-logo--emirates { background: #d71921; }
+.brand-logo--aramco   { background: linear-gradient(135deg, #00843D 0%, #005EB8 100%); }
+
+/* ── Callout ── */
+.callout {
+  padding: 22px 28px;
+  border-inline-start: 3px solid var(--gold);
+  background: rgba(146,114,65,0.09);
+  font-family: var(--body); font-size: 21px; line-height: 1.68;
+}
+
+/* ── Production split ── */
+.prod-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 80px; }
+.prod-list { list-style: none; }
+.prod-list li {
+  font-family: var(--body); font-size: 20px; line-height: 1.55; opacity: 0.75;
+  padding: 13px 0; border-bottom: 1px solid rgba(255,255,255,0.07);
+  display: flex; gap: 16px;
+}
+.prod-list li::before { content: "—"; font-family: var(--mono); opacity: 0.28; flex-shrink: 0; direction: ltr; }
+.plat { font-family: var(--display); font-weight: 600; font-size: 27px; color: var(--gold-lt); padding: 12px 0; border-top: 1px solid rgba(255,255,255,0.1); letter-spacing: 0.03em; }
+
+/* ── Steps ── */
+.step {
+  display: grid; grid-template-columns: 62px 1fr; gap: 24px;
+  padding: 22px 0; border-top: 1px solid var(--rule); align-items: center;
+}
+.step-n { font-family: var(--mono); font-size: 12px; letter-spacing: 0.22em; color: var(--gold); direction: ltr; }
+.step-t { font-family: var(--body); font-size: 24px; line-height: 1.6; opacity: 0.86; }
+
+/* ── Slide 02 ── */
+.s02-grid {
+  flex: 1;
+  display: grid;
+  grid-template-columns: 56fr 44fr;
+  gap: 0;
+  padding-top: 18px;
+  direction: ltr;
+}
+.s02-left {
+  display: flex; flex-direction: column; direction: rtl;
+  padding-inline-end: 56px;
+  border-inline-end: 1px solid var(--rule);
+}
+.s02-right {
+  display: flex; flex-direction: column; direction: rtl;
+  padding-inline-start: 52px;
+}
+.s02-stats { display: grid; grid-template-columns: 1fr 1fr; gap: 14px 36px; margin-top: 22px; }
+.s02-stat { border-top: 1px solid rgba(255,255,255,0.12); padding-top: 14px; }
+.s02-stat-n {
+  font-family: var(--mono); font-size: 44px; line-height: 1; color: var(--gold-lt);
+  text-shadow: 0 0 40px rgba(184,152,96,0.3);
+}
+.s02-stat-l { font-family: var(--body); font-size: 15px; line-height: 1.55; color: rgba(255,255,255,0.55); margin-top: 8px; }
+
+/* ── Mechanism items ── */
+.mech-item {
+  display: flex; gap: 16px; align-items: flex-start;
+  padding: 13px 0; border-bottom: 1px solid var(--rule);
+}
+.mech-n { font-family: var(--mono); font-size: 10.5px; letter-spacing: 0.22em; color: var(--gold); flex-shrink: 0; padding-top: 4px; direction: ltr; }
+.mech-title { font-family: var(--body); font-weight: 700; font-size: 19px; margin-bottom: 4px; }
+.mech-desc { font-family: var(--body); font-size: 15px; line-height: 1.55; opacity: 0.5; }
+
+/* ── Phone mockup ── */
+.phone-mockup-wrap {
+  display: flex; flex-direction: column; align-items: center; justify-content: center;
+  gap: 10px;
+}
+.phone-mockup {
+  width: 156px; height: 310px;
+  border-radius: 32px;
+  border: 4px solid rgba(255,255,255,0.14);
+  background: #000;
+  overflow: hidden;
+  box-shadow: 0 0 0 1px rgba(255,255,255,0.04), 0 20px 56px rgba(0,0,0,0.85);
+  transform: perspective(800px) rotateY(-6deg) rotateX(2deg);
+  position: relative; flex-shrink: 0;
+}
+.phone-notch {
+  position: absolute; top: 0; left: 50%; transform: translateX(-50%);
+  width: 60px; height: 16px; border-radius: 0 0 10px 10px;
+  background: #000; z-index: 3;
+}
+.phone-screen {
+  position: absolute; inset: 0;
+  background-image: url('https://nile-developments.com/mainsite/wp-content/uploads/2025/06/2-TEAM-1-scaled.webp');
+  background-size: cover; background-position: center; z-index: 1;
+}
+.phone-home-indicator {
+  position: absolute; bottom: 7px; left: 50%; transform: translateX(-50%);
+  width: 44px; height: 3px; border-radius: 2px;
+  background: rgba(255,255,255,0.22); z-index: 4;
+}
+.phone-label {
+  font-family: var(--mono); font-size: 9.5px; letter-spacing: 0.16em;
+  color: rgba(146,114,65,0.7); text-transform: uppercase; text-align: center; direction: rtl;
+}
+
+/* ── Series Overview (Slide 05 NEW) ── */
+.arc-wrap {
+  position: relative; padding: 70px 24px 42px;
+  margin-top: 28px;
+}
+.arc-track {
+  position: absolute; inset: auto 24px 76px 24px; height: 2px;
+  background: linear-gradient(to left, rgba(146,114,65,0.05) 0%, rgba(146,114,65,0.55) 50%, var(--gold) 95%);
+  z-index: 0;
+}
+.arc-track::before {
+  content: ""; position: absolute; inset: -12px -2px;
+  background: radial-gradient(ellipse at center, rgba(146,114,65,0.15) 0%, transparent 70%);
+  filter: blur(8px);
+}
+.arc-row { display: flex; direction: ltr; justify-content: space-between; position: relative; z-index: 1; gap: 12px; }
+.arc-step { flex: 1; display: flex; flex-direction: column; align-items: center; text-align: center; direction: rtl; }
+.arc-dot {
+  width: 18px; height: 18px; border-radius: 50%;
+  background: var(--ink); border: 2px solid var(--gold);
+  box-shadow: 0 0 0 4px rgba(146,114,65,0.12), 0 0 24px rgba(146,114,65,0.4);
+  position: relative; z-index: 2; margin-bottom: 16px;
+}
+.arc-step--finale .arc-dot {
+  background: var(--gold); border-color: var(--gold-lt);
+  box-shadow: 0 0 0 5px rgba(184,152,96,0.18), 0 0 36px rgba(184,152,96,0.7);
+}
+.arc-num {
+  font-family: var(--mono); font-size: 11px; letter-spacing: 0.32em;
+  color: var(--gold); margin-bottom: 8px; direction: ltr;
+}
+.arc-title { font-family: var(--body); font-weight: 700; font-size: 22px; line-height: 1.25; }
+.arc-step--finale .arc-title { color: var(--gold-lt); }
+.arc-tag { font-family: var(--body); font-size: 13px; opacity: 0.5; margin-top: 4px; }
+
+.overview-quote {
+  margin-top: auto; padding: 26px 32px;
+  border-inline-start: 3px solid var(--gold);
+  background: linear-gradient(90deg, rgba(146,114,65,0.12) 0%, rgba(146,114,65,0.03) 100%);
+  font-family: var(--body); font-size: 23px; line-height: 1.6; font-weight: 500;
+}
+
+/* ── Episode columns (Slide 06) ── */
+.ep-slide { padding: 0; }
+.ep-chrome { padding: 28px 80px 12px; }
+.ep-foot { padding: 8px 80px 16px; margin-top: 0; }
+.slide.ep-slide > .ep-chrome,
+.slide.ep-slide > .ep-cols,
+.slide.ep-slide > .ep-foot { position: relative; z-index: 2; }
+.ep-cols { flex: 1; display: flex; direction: ltr; }
+.ep-col { flex: 1; position: relative; overflow: hidden; }
+.ep-col + .ep-col { border-left: 1px solid rgba(255,255,255,0.06); }
+.ep-col-bg { position: absolute; inset: 0; background-size: cover; background-position: center; z-index: 0; }
+.ep-col-ov { position: absolute; inset: 0; z-index: 1; }
+.ep-col-inner { position: absolute; inset: 0; z-index: 2; padding: 22px 22px 20px; display: flex; flex-direction: column; direction: rtl; }
+.ep-col-num { font-family: var(--mono); font-size: 10px; letter-spacing: 0.3em; color: var(--gold); }
+.ep-col-title { font-family: var(--body); font-weight: 700; font-size: 26px; line-height: 1.2; margin-top: 10px; }
+.ep-col-tag { font-family: var(--body); font-size: 18px; line-height: 1.5; color: var(--gold-lt); opacity: 0.9; margin-top: 4px; font-weight: 600; }
+.ep-col-summary { font-family: var(--body); font-size: 16px; line-height: 1.55; opacity: 0.62; margin-top: 10px; }
+.ep-col-meta {
+  margin-top: 10px; padding-top: 10px; border-top: 1px solid rgba(255,255,255,0.07);
+  font-family: var(--mono); font-size: 9.5px; letter-spacing: 0.16em;
+  color: rgba(184,152,96,0.65); line-height: 1.6; direction: rtl;
+}
+.ep-col-meta b { display: block; color: rgba(184,152,96,0.45); font-weight: 400; margin-top: 4px; }
+.ep-col-meta span { display: block; color: rgba(255,255,255,0.45); font-weight: 400; }
+.ep-col-dur { font-family: var(--mono); font-size: 10px; letter-spacing: 0.2em; opacity: 0.32; margin-top: auto; direction: ltr; }
+.ep-col-ghost { font-family: var(--mono); font-size: 160px; line-height: 1; opacity: 0.03; direction: ltr; color: white; align-self: flex-end; margin-bottom: -20px; user-select: none; pointer-events: none; }
+
+/* Vertical 9:16 video for ep-col 1 */
+.ep-col-video {
+  width: 100%; aspect-ratio: 9 / 16; max-height: 240px;
+  margin: 12px auto 0; position: relative;
+  border-radius: 6px; overflow: hidden; background: #000;
+  box-shadow: 0 8px 28px rgba(0,0,0,0.6);
+}
+.ep-col-video iframe {
+  position: absolute; inset: 0; width: 100%; height: 100%; border: none; display: block;
+}
+
+/* ── Team slide ── */
+.team-slide-bg-watermark {
+  position: absolute; right: -40px; bottom: -120px;
+  font-family: var(--mono); font-size: 460px; line-height: 1;
+  color: var(--gold); opacity: 0.025;
+  pointer-events: none; user-select: none; direction: ltr;
+}
+.team-leaders {
+  display: flex; direction: ltr; gap: 24px; margin-bottom: 20px;
+}
+.team-leader-card {
+  flex: 1; border-top: 2px solid var(--gold);
+  padding: 24px 28px; direction: rtl;
+  background: linear-gradient(135deg, rgba(146,114,65,0.14) 0%, rgba(146,114,65,0.03) 60%, transparent 100%);
+  position: relative;
+}
+.team-leader-name { font-family: var(--body); font-weight: 700; font-size: 32px; color: var(--gold-lt); line-height: 1.2; }
+.team-leader-role { font-family: var(--body); font-size: 17px; color: rgba(255,255,255,0.5); margin-top: 5px; }
+.team-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; }
+.team-card {
+  border: 1px solid rgba(255,255,255,0.08); padding: 16px 18px; direction: rtl;
+  background: linear-gradient(135deg, rgba(146,114,65,0.05) 0%, transparent 100%);
+}
+.team-card-name { font-family: var(--body); font-weight: 700; font-size: 20px; color: var(--white); line-height: 1.3; }
+.team-card-role { font-family: var(--body); font-size: 14px; opacity: 0.5; margin-top: 4px; direction: rtl; }
+
+/* ── Navigation ── */
+#nav {
+  position: fixed; bottom: 22px; left: 50%; transform: translateX(-50%);
+  z-index: 999; direction: ltr;
+  display: flex; align-items: center; gap: 8px;
+  padding: 7px 13px; border-radius: 999px;
+  background: rgba(8,8,8,0.78); backdrop-filter: blur(16px);
+  border: 1px solid rgba(146,114,65,0.28);
+  box-shadow: 0 8px 32px rgba(0,0,0,0.6);
+}
+.nbtn {
+  width: 34px; height: 34px; border-radius: 50%;
+  border: 1px solid rgba(146,114,65,0.32); background: transparent;
+  color: rgba(255,255,255,0.65); font-size: 14px; cursor: pointer; line-height: 1;
+  display: flex; align-items: center; justify-content: center;
+  transition: all 0.22s cubic-bezier(0.22,1,0.36,1); flex-shrink: 0;
+}
+.nbtn:hover:not(:disabled) {
+  background: rgba(146,114,65,0.22); border-color: var(--gold-lt);
+  color: var(--gold-lt); transform: scale(1.06);
+}
+.nbtn:disabled { opacity: 0.18; cursor: default; }
+.ndots { display: flex; gap: 6px; align-items: center; padding: 0 4px; }
+.ndot {
+  width: 6px; height: 6px; border-radius: 50%;
+  background: rgba(255,255,255,0.2); border: 0; padding: 0; cursor: pointer;
+  transition: all 0.28s;
+}
+.ndot:hover { background: rgba(184,152,96,0.6); }
+.ndot.active { background: var(--gold); width: 18px; border-radius: 999px; }
+.ncount {
+  font-family: var(--mono); font-size: 10px; letter-spacing: 0.18em;
+  color: rgba(255,255,255,0.32); white-space: nowrap; padding: 0 2px;
+}
+
+/* Keyboard hint */
+#kbd-hint {
+  position: fixed; bottom: 76px; left: 50%; transform: translateX(-50%);
+  z-index: 998; direction: ltr;
+  font-family: var(--mono); font-size: 10px; letter-spacing: 0.22em;
+  color: rgba(255,255,255,0.32); text-transform: uppercase;
+  background: rgba(8,8,8,0.55); backdrop-filter: blur(8px);
+  padding: 6px 14px; border-radius: 999px;
+  border: 1px solid rgba(146,114,65,0.18);
+  opacity: 0; pointer-events: none;
+  transition: opacity 0.6s ease;
+}
+#kbd-hint.show { opacity: 1; }
+#kbd-hint kbd {
+  display: inline-block; padding: 1px 6px; margin: 0 2px;
+  border: 1px solid rgba(146,114,65,0.45); border-radius: 3px;
+  color: var(--gold-lt); font-family: var(--mono);
+}
+
+/* ── Mobile ── */
+@media (max-width: 900px) {
+  html, body { overflow-y: auto; overflow-x: hidden; width: 100%; height: auto; }
+  #wrap { position: relative; display: block; width: 100%; height: auto; }
+  #stage {
+    width: 100% !important; height: auto !important;
+    transform: none !important; position: relative !important;
+    display: block !important;
+  }
+  .slide {
+    position: relative !important; width: 100% !important;
+    height: auto !important; min-height: 100svh;
+    opacity: 1 !important; pointer-events: auto !important;
+    transform: none !important;
+    padding: 28px 20px 24px;
+    display: flex !important; flex-direction: column !important;
+  }
+  .slide.active .chrome, .slide.active .cv,
+  .slide.active .slide-body, .slide.active .foot,
+  .slide.active .ep-chrome, .slide.active .ep-cols, .slide.active .ep-foot {
+    animation: none !important;
+  }
+  /* Mobile cover background swap */
+  .slide.cover-slide .ph-img {
+    background-image: url('mopyzci7-cover-slide-bg-mob-version.png') !important;
+    background-position: center top !important;
+  }
+  #nav { position: sticky; bottom: 12px; }
+  #kbd-hint { display: none !important; }
+  .t-display { font-size: 56px !important; }
+  .t-xl { font-size: 36px !important; }
+  .t-h1 { font-size: 28px !important; }
+  .t-lead { font-size: 17px !important; }
+  .t-body { font-size: 15px !important; }
+  .s02-grid { grid-template-columns: 1fr !important; gap: 32px; }
+  .s02-right { padding-inline-start: 0 !important; border-inline-start: none !important; padding-top: 0; }
+  .s02-left { padding-inline-end: 0 !important; border-inline-end: none !important; }
+  .cards2 { grid-template-columns: 1fr !important; }
+  .card-aramco { grid-template-columns: 1fr !important; }
+  .prod-grid { grid-template-columns: 1fr !important; gap: 24px; }
+  .team-leaders { flex-direction: column !important; }
+  .team-grid { grid-template-columns: 1fr 1fr !important; }
+  .team-slide-bg-watermark { display: none !important; }
+  .ep-cols { flex-direction: column !important; }
+  .ep-slide { min-height: auto !important; }
+  .ep-col { flex: none !important; min-height: 320px; }
+  .ep-col-inner { position: relative !important; inset: auto !important; }
+  .ep-col-bg { position: absolute !important; }
+  .ep-col-ov { position: absolute !important; }
+  .ep-col-video { max-height: 360px; }
+  .phone-mockup-wrap { display: none !important; }
+  blockquote { font-size: 32px !important; }
+  .s02-stat-n { font-size: 30px !important; }
+  /* Series overview arc: stack vertically on mobile */
+  .arc-wrap { padding: 20px 0 0; }
+  .arc-track { display: none; }
+  .arc-row { flex-direction: column !important; gap: 16px; }
+  .arc-step { flex-direction: row !important; text-align: right; align-items: center; gap: 14px; padding: 10px 4px; border-bottom: 1px solid rgba(146,114,65,0.12); }
+  .arc-dot { margin-bottom: 0; flex-shrink: 0; }
+  .arc-num { margin-bottom: 0; min-width: 56px; }
+  .arc-title { font-size: 17px !important; }
+  .overview-quote { font-size: 16px !important; padding: 16px 18px; }
+}
+</style>
 </head>
 <body>
+<div id="wrap">
+  <div id="stage">
 
-  <!-- ── HERO ───────────────────────────────────────────── -->
-  <section class="hero">
-    <div class="hero__brand-strip">
-      <span>Strike Media</span>
-      <span>×</span>
-      <span>Nile Developments</span>
+<!-- ═══════════════════════════════════
+     01 · الغلاف
+═══════════════════════════════════ -->
+<div class="slide s-photo cover-slide active" data-label="01 الغلاف">
+  <div class="ph-img" style="background-image:url('mopxxjin-image.png');background-position:center center;"></div>
+  <div class="ph-ov grain" style="background:linear-gradient(105deg, rgba(0,0,0,0.85) 36%, rgba(0,0,0,0.42) 68%, rgba(0,0,0,0.24) 100%), linear-gradient(to bottom, rgba(0,0,0,0.48) 0%, transparent 14%, transparent 80%, rgba(0,0,0,0.6) 100%);"></div>
+
+  <header class="chrome">
+    <div class="ch-l">
+      <span class="ch-brand">Strike Media</span>
+      <span class="ch-sep"></span>
+      <span class="ch-tag">مقترح داخلي · 2026</span>
+    </div>
+    <img src="mopqrvgv-Nile_Developments.svg.png" class="logo" alt="Nile Developments" style="height:26px;">
+  </header>
+
+  <div class="cv" style="gap:0; max-width:920px;">
+    <img src="mopqrvgv-Nile_Developments.svg.png" alt="Nile Developments" style="height:52px;filter:brightness(0) invert(1);margin-bottom:24px;object-fit:contain;object-position:right center;">
+    <div class="kicker" style="margin-bottom:22px;">موسم درامي · ست حلقات</div>
+    <h1 class="t-display" style="text-shadow: 0 0 80px rgba(0,0,0,0.4);">صنّاع<br>القيمة</h1>
+    <div style="width:60px;height:2px;background:var(--gold);margin:32px 0;box-shadow:0 0 18px rgba(146,114,65,0.5);"></div>
+    <p class="t-lead" style="max-width:600px;">
+      ست حلقات تعرض نايل من الداخل،<br>وتُمهِّد للمشروع القادم في النهر الأخضر.
+    </p>
+    <p style="font-family:var(--mono);font-size:12px;letter-spacing:0.22em;color:var(--gold);margin-top:18px;text-transform:uppercase;direction:rtl;">
+      أول مطور في مصر ينتج عمل درامي من بطولة فريق العمل الحقيقي
+    </p>
+  </div>
+
+  <footer class="foot">
+    <img src="mopv07ic-POWERED-BY-STRIKE-LOGO-WHITE-3X_2x_2x.png" class="powered-by" alt="Powered by Strike Media">
+    <span class="foot-lbl">الغلاف</span>
+    <span class="foot-num">01 / 10</span>
+  </footer>
+</div>
+
+<!-- ═══════════════════════════════════
+     02 · ما هو الـ Micro Drama
+═══════════════════════════════════ -->
+<div class="slide s-dark" data-label="02 ما هو الـ Micro Drama">
+  <header class="chrome">
+    <div class="ch-l">
+      <img src="mopqrvgv-Nile_Developments.svg.png" class="logo" alt="Nile Developments">
+      <span class="ch-sep"></span>
+      <span class="ch-brand">صنّاع القيمة</span>
+    </div>
+    <span class="foot-num">02 / 10</span>
+  </header>
+
+  <div class="s02-grid">
+
+    <!-- LEFT: heading + stats + callout -->
+    <div class="s02-left">
+      <div class="kicker" style="margin-bottom:12px;">فورمات المستقبل</div>
+      <h2 style="font-family:var(--body);font-weight:900;font-size:48px;line-height:1.18;direction:rtl;">
+        لا تُشرَح. لا تُروَّج.<br>
+        <span style="color:var(--gold-lt);">تَترك المشاهد يرى.</span>
+      </h2>
+      <div class="rule" style="margin:18px 0 0;"></div>
+
+      <div class="s02-stats">
+        <div class="s02-stat">
+          <div class="s02-stat-n">60–90 ث</div>
+          <div class="s02-stat-l">كل حلقة قصة مكتملة — بداية ووسط ونهاية</div>
+        </div>
+        <div class="s02-stat">
+          <div class="s02-stat-n">9:16</div>
+          <div class="s02-stat-l">مصمَّمة للموبايل أولاً حيث يقضي الجمهور وقته</div>
+        </div>
+        <div class="s02-stat">
+          <div class="s02-stat-n">≈ 10 دق</div>
+          <div class="s02-stat-l">إجمالي الموسم — قابل للنشر وعروض المستثمرين</div>
+        </div>
+        <div class="s02-stat">
+          <div class="s02-stat-n">× 12</div>
+          <div class="s02-stat-l">مضاعفة التفاعل مقارنةً بالفيديو التقليدي</div>
+        </div>
+      </div>
+
+      <div style="margin-top:auto; padding:16px 20px; border-inline-start:3px solid var(--gold); background:rgba(146,114,65,0.08);">
+        <p style="font-family:var(--body); font-size:17px; line-height:1.72; opacity:0.85; direction:rtl;">
+          حين تُجمع الحلقات معاً تتحوّل من محتوى متفرق إلى
+          <strong style="font-weight:700;color:var(--gold-lt);">سرد مؤسسي متكامل</strong>
+          يبقى في ذاكرة جمهورك.
+        </p>
+      </div>
     </div>
 
-    <img src="/nile-logo.png" alt="Nile Developments" class="hero__logo">
+    <!-- RIGHT: mechanism + phone mockup -->
+    <div class="s02-right" style="border-inline-start:1px solid var(--rule);">
+      <div class="kicker" style="margin-bottom:14px;">لماذا يعمل؟</div>
+      <div class="mech-item">
+        <div class="mech-n">01</div>
+        <div>
+          <div class="mech-title">الانتباه الفوري</div>
+          <div class="mech-desc">صدمة بصرية خلال 3 ثوانٍ — قبل أن يفكر الإصبع في السحب</div>
+        </div>
+      </div>
+      <div class="mech-item">
+        <div class="mech-n">02</div>
+        <div>
+          <div class="mech-title">القصة أولاً</div>
+          <div class="mech-desc">لا رسالة تجارية صريحة — الإقناع يحدث ضمنياً عبر الشخصية</div>
+        </div>
+      </div>
+      <div class="mech-item">
+        <div class="mech-n">03</div>
+        <div>
+          <div class="mech-title">الخوارزمية تفضّلها</div>
+          <div class="mech-desc">معدل إكمال عالٍ يُضخّم الوصول العضوي على كل المنصات</div>
+        </div>
+      </div>
+      <div class="mech-item" style="border-bottom:none;">
+        <div class="mech-n">04</div>
+        <div>
+          <div class="mech-title">الانتشار الذاتي</div>
+          <div class="mech-desc">المشاهد يُعيد مشاركتها لأنها تبدو قيمة — لا إعلاناً مدفوعاً</div>
+        </div>
+      </div>
 
-    <h1 class="hero__title">صنّاع القيمة</h1>
-    <p class="hero__sub">موسم درامي قصير</p>
-    <p class="hero__sub hero__sub--accent">٢٠٢٦</p>
+      <div style="margin-top:auto; display:flex; justify-content:center; padding-bottom:4px;">
+        <div class="phone-mockup-wrap">
+          <div class="phone-mockup">
+            <div class="phone-notch"></div>
+            <div class="phone-screen"></div>
+            <div class="phone-home-indicator"></div>
+          </div>
+          <div class="phone-label">من حلقة اللي مالوش مثيل</div>
+        </div>
+      </div>
+    </div>
 
-    <div class="hero__rule"></div>
+  </div>
 
-    <p class="hero__pitch">
-      خمس حلقات تعرض نايل من الداخل،<br>
-      وتُمهِّد للمشروع القادم في
-      <strong>النهر الأخضر</strong>.
+  <footer class="foot">
+    <img src="mopv07ic-POWERED-BY-STRIKE-LOGO-WHITE-3X_2x_2x.png" class="powered-by" alt="Powered by Strike Media">
+    <span class="foot-lbl">ما هو الـ Micro Drama</span>
+    <span class="foot-num">02 / 10</span>
+  </footer>
+</div>
+
+<!-- ═══════════════════════════════════
+     03 · لماذا نايل
+═══════════════════════════════════ -->
+<div class="slide s-dark" data-label="03 لماذا نايل">
+  <header class="chrome">
+    <div class="ch-l">
+      <img src="mopqrvgv-Nile_Developments.svg.png" class="logo" alt="Nile Developments">
+      <span class="ch-sep"></span>
+      <span class="ch-brand">صنّاع القيمة</span>
+    </div>
+    <span class="foot-num">03 / 10</span>
+  </header>
+
+  <div class="cv" style="gap:0;">
+    <div class="kicker" style="margin-bottom:14px;">السياق العالمي</div>
+    <h2 class="t-h1" style="margin-bottom:22px;">أول مطور في مصر ينتج عمل درامي من بطولة فريق العمل الحقيقي</h2>
+
+    <!-- Apple + Emirates row -->
+    <div class="cards2">
+      <div class="card">
+        <div class="brand-logo brand-logo--apple">
+          <img src="mopz58hl-apple-logo.webp" alt="Apple">
+        </div>
+        <div class="card-name">Apple</div>
+        <div class="card-desc">وثائقيات قصيرة جعلت التصنيع أسطورة بصرية — لا مجرد تقنية</div>
+      </div>
+      <div class="card">
+        <div class="brand-logo brand-logo--emirates">
+          <img src="mopz58hs-emirates-logo.png" alt="Emirates">
+        </div>
+        <div class="card-name">Emirates</div>
+        <div class="card-desc">درامات عن طاقم الطيران حوّلت الخدمة إلى هوية لا تُنسى</div>
+      </div>
+    </div>
+
+    <!-- Aramco card with vertical 9:16 video -->
+    <div class="card-aramco">
+      <div>
+        <div class="brand-logo brand-logo--aramco">
+          <img src="mopz58d8-aramco-logo.png" alt="Aramco">
+        </div>
+        <div class="card-name">Aramco</div>
+        <div class="card-desc">موسم درامي كامل من الداخل بنى ثقة المستثمرين العالميين بالشركة</div>
+      </div>
+      <div style="border-radius:6px;overflow:hidden;position:relative;background:#000;aspect-ratio:9/16;height:240px;width:auto;flex-shrink:0;box-shadow:0 12px 32px rgba(0,0,0,0.6);">
+        <iframe
+          src="https://www.youtube.com/embed/gjq81Jx-DK4?rel=0&modestbranding=1"
+          style="position:absolute;inset:0;width:100%;height:100%;border:none;"
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+          allowfullscreen loading="lazy">
+        </iframe>
+      </div>
+    </div>
+
+    <div class="callout" style="margin-top:18px;">
+      استخدمت هذه العلامات الكبرى الدراما القصيرة لتحويل المؤسسة إلى قصة يتذكرها العالم.
+      <strong style="font-weight:700;color:var(--gold-lt);">حان دور NILE DEVELOPMENTS.</strong>
+    </div>
+  </div>
+
+  <footer class="foot">
+    <img src="mopv07ic-POWERED-BY-STRIKE-LOGO-WHITE-3X_2x_2x.png" class="powered-by" alt="Powered by Strike Media">
+    <span class="foot-lbl">لماذا نايل</span>
+    <span class="foot-num">03 / 10</span>
+  </footer>
+</div>
+
+<!-- ═══════════════════════════════════
+     04 · الفكرة — full bleed photo
+═══════════════════════════════════ -->
+<div class="slide s-photo" data-label="04 الفكرة">
+  <div class="ph-img" style="background-image:url('https://nile-developments.com/mainsite/wp-content/uploads/2024/11/002-Tycoon-Tower1079-1.webp');background-position:65% center;"></div>
+  <div class="ph-ov grain" style="background:linear-gradient(100deg, rgba(0,0,0,0.92) 42%, rgba(0,0,0,0.4) 78%, rgba(0,0,0,0.2) 100%), linear-gradient(to bottom, rgba(0,0,0,0.4) 0%, transparent 12%, transparent 84%, rgba(0,0,0,0.55) 100%);"></div>
+
+  <header class="chrome">
+    <div class="ch-l">
+      <img src="mopqrvgv-Nile_Developments.svg.png" class="logo" alt="Nile Developments">
+      <span class="ch-sep"></span>
+      <span class="ch-brand">صنّاع القيمة</span>
+    </div>
+    <span class="foot-num">04 / 10</span>
+  </header>
+
+  <div class="cv" style="gap:0; max-width:1000px;">
+    <div class="kicker" style="margin-bottom:22px;">القيمة الجوهرية</div>
+    <blockquote style="font-family:var(--body);font-weight:700;font-size:62px;line-height:1.3;">
+      القيمة الحقيقية<br>ليست في الحجر أو المباني،<br>القيمة الحقيقية<br>في <span style="color:var(--gold);text-shadow:0 0 60px rgba(146,114,65,0.6), 0 0 20px rgba(146,114,65,0.4);">القرار.</span>
+    </blockquote>
+    <div style="width:60px;height:1px;background:var(--gold);margin:28px 0;box-shadow:0 0 14px rgba(146,114,65,0.5);"></div>
+    <p class="t-lead" style="max-width:680px;opacity:0.9;">
+      هذا الموسم لا يحتفي بالمباني. يحتفي بمن يبنونها.<br>
+      ست حلقات تكشف الشركة من الداخل — حيث تُولد القيمة قبل أن تظهر للعالم.
+    </p>
+  </div>
+
+  <footer class="foot">
+    <img src="mopv07ic-POWERED-BY-STRIKE-LOGO-WHITE-3X_2x_2x.png" class="powered-by" alt="Powered by Strike Media">
+    <span class="foot-lbl">الفكرة الجوهرية</span>
+    <span class="foot-num">04 / 10</span>
+  </footer>
+</div>
+
+<!-- ═══════════════════════════════════
+     05 · نظرة عامة على الموسم — NEW
+═══════════════════════════════════ -->
+<div class="slide s-dark" data-label="05 نظرة عامة على الموسم">
+  <header class="chrome">
+    <div class="ch-l">
+      <img src="mopqrvgv-Nile_Developments.svg.png" class="logo" alt="Nile Developments">
+      <span class="ch-sep"></span>
+      <span class="ch-brand">صنّاع القيمة · نظرة عامة على الموسم</span>
+    </div>
+    <span class="foot-num">05 / 10</span>
+  </header>
+
+  <div class="slide-body" style="padding-top:14px; gap:0;">
+    <div class="kicker" style="margin-bottom:14px;">الخيط الرابط</div>
+    <h2 style="font-family:var(--body);font-weight:900;font-size:74px;line-height:1.06;direction:rtl;">
+      آدم — <span style="color:var(--gold-lt);">من المتفرج</span><br>إلى صانع القيمة.
+    </h2>
+    <p class="t-lead" style="max-width:1080px;margin-top:18px;font-size:24px;opacity:0.92;">
+      شخصية واحدة. رحلة واحدة. ستة مشاهد تكشف نايل كما لم تُرَ من قبل.
+    </p>
+    <p class="t-body" style="max-width:1180px;margin-top:14px;font-size:18px;line-height:1.85;opacity:0.7;">
+      آدم شاب حقيقي من الفريق الجديد في نايل. الكاميرا تتبع منظوره طوال الموسم — نرى ما يراه، نسمع ما يسمعه.
+      هذه ليست شخصية يلعبها ممثل، بل عين شاب يكتشف الشركة لأول مرة، تدعو الجمهور لاكتشافها معه.
     </p>
 
-    <div class="hero__cta-row">٤٥٠ ثانية &nbsp; ٥ حلقات &nbsp; ٤ منصّات</div>
-  </section>
-
-  <!-- ── EPISODES ───────────────────────────────────────── -->
-  <section class="episodes">
-    <div class="episodes__intro">
-      <p class="episodes__intro-eyebrow">THE SEASON</p>
-      <h2 class="episodes__intro-title">الحلقات الخمس</h2>
-      <p class="episodes__intro-sub">
-        كل حلقة ٩٠ ثانية. تُصوَّر بالكامل داخل مقرات نايل. تُنشَر على
-        Instagram · TikTok · LinkedIn · Facebook.
-      </p>
+    <!-- Narrative arc — RTL: episode 06 (finale) appears first visually on the right -->
+    <div class="arc-wrap">
+      <div class="arc-track"></div>
+      <div class="arc-row">
+        <div class="arc-step arc-step--finale">
+          <div class="arc-dot"></div>
+          <div class="arc-num">06 ★</div>
+          <div class="arc-title">أيقونة جديدة</div>
+          <div class="arc-tag">The Reveal</div>
+        </div>
+        <div class="arc-step">
+          <div class="arc-dot"></div>
+          <div class="arc-num">05</div>
+          <div class="arc-title">باريس في التجمع</div>
+          <div class="arc-tag">Nile Boulevard</div>
+        </div>
+        <div class="arc-step">
+          <div class="arc-dot"></div>
+          <div class="arc-num">04</div>
+          <div class="arc-title">٢٣٣ متر</div>
+          <div class="arc-tag">Tycoon Tower</div>
+        </div>
+        <div class="arc-step">
+          <div class="arc-dot"></div>
+          <div class="arc-num">03</div>
+          <div class="arc-title">اللي مالوش مثيل</div>
+          <div class="arc-tag">موقع ٣١ شمال</div>
+        </div>
+        <div class="arc-step">
+          <div class="arc-dot"></div>
+          <div class="arc-num">02</div>
+          <div class="arc-title">نايل ستايل</div>
+          <div class="arc-tag">أول يوم في نايل</div>
+        </div>
+        <div class="arc-step">
+          <div class="arc-dot"></div>
+          <div class="arc-num">01</div>
+          <div class="arc-title">الحلم</div>
+          <div class="arc-tag">قبل أن يدخل نايل</div>
+        </div>
+      </div>
     </div>
 
-    <div class="episode-grid">
-
-      <article class="episode">
-        <div class="episode__num">EPISODE 01</div>
-        <h3 class="episode__title">نايل ستايل</h3>
-        <p class="episode__desc">
-          الشركة من الداخل في يوم عمل عادي في نايل غير عادي في أي مكان آخر.
-        </p>
-        <div class="episode__meta">
-          <span><strong>٩٠ ث</strong></span>
-          <span>HQ + Projects</span>
-        </div>
-      </article>
-
-      <article class="episode">
-        <div class="episode__num">EPISODE 02</div>
-        <h3 class="episode__title">اللي مالوش مثيل</h3>
-        <p class="episode__desc">
-          مشروع ٣١ شمال — على وشك التسليم. خمس سنين من الإنجاز في حلقة واحدة.
-        </p>
-        <div class="episode__meta">
-          <span><strong>٩٠ ث</strong></span>
-          <span>31 North · Site</span>
-        </div>
-      </article>
-
-      <article class="episode">
-        <div class="episode__num">EPISODE 03</div>
-        <h3 class="episode__title">٢٣٣ متر</h3>
-        <p class="episode__desc">
-          Nile Business City — شراكة Grand Millennium وحجم Tycoon Tower.
-        </p>
-        <div class="episode__meta">
-          <span><strong>٩٠ ث</strong></span>
-          <span>Boardroom</span>
-        </div>
-      </article>
-
-      <article class="episode">
-        <div class="episode__num">EPISODE 04</div>
-        <h3 class="episode__title">باريس في التجمع</h3>
-        <p class="episode__desc">
-          كيف وُلِدَت حملة Nile Boulevard من الفريق — ولادة فكرة في غرفة ماركتنج.
-        </p>
-        <div class="episode__meta">
-          <span><strong>٩٠ ث</strong></span>
-          <span>Marketing Room</span>
-        </div>
-      </article>
-
-      <article class="episode episode--finale">
-        <div class="episode__num">EPISODE 05 · FINALE</div>
-        <h3 class="episode__title">أيقونة جديدة</h3>
-        <p class="episode__desc">
-          الإعلان الطبيعي عن «النهر الأخضر». الجميع يتجه للنهر الأخضر.
-        </p>
-        <div class="episode__meta">
-          <span><strong>٩٠ ث</strong></span>
-          <span>Green River Reveal</span>
-        </div>
-      </article>
-
+    <div class="overview-quote" style="margin-top:14px;">
+      الكاميرا في كل حلقة هي عيون آدم. نرى ما يراه. الجمهور
+      <strong style="color:var(--gold-lt);font-weight:700;"> يصبح آدم</strong> —
+      يكتشف نايل من الداخل لحظة بلحظة.
     </div>
-  </section>
+  </div>
 
-  <!-- ── FOOTER ─────────────────────────────────────────── -->
-  <footer>
-    <p class="tagline">البنايات تُبنى من الخرسانة.</p>
-    <p class="tagline tagline--accent">الشركات تُبنى من الناس.</p>
+  <footer class="foot">
+    <img src="mopv07ic-POWERED-BY-STRIKE-LOGO-WHITE-3X_2x_2x.png" class="powered-by" alt="Powered by Strike Media">
+    <span class="foot-lbl">نظرة عامة على الموسم</span>
+    <span class="foot-num">05 / 10</span>
+  </footer>
+</div>
 
-    <p class="credit">
-      Produced by <a href="https://strikestudio.net" target="_blank" rel="noopener">Strike Media</a> &nbsp;·&nbsp; for Nile Developments &nbsp;·&nbsp; 2026
-    </p>
+<!-- ═══════════════════════════════════
+     06 · خريطة الموسم — 6-col photo grid
+═══════════════════════════════════ -->
+<div class="slide s-dark ep-slide" data-label="06 خريطة الموسم">
+
+  <header class="chrome ep-chrome">
+    <div class="ch-l">
+      <img src="mopqrvgv-Nile_Developments.svg.png" class="logo" alt="Nile Developments">
+      <span class="ch-sep"></span>
+      <span class="ch-brand">صنّاع القيمة · خريطة الموسم</span>
+    </div>
+    <div style="display:flex;align-items:center;gap:12px;">
+      <span style="font-family:var(--body);font-size:13px;font-weight:600;color:rgba(255,255,255,0.45);direction:rtl;">ستة مشاهد. حلم واحد.</span>
+      <span class="foot-num">06 / 10</span>
+    </div>
+  </header>
+
+  <div class="ep-cols">
+
+    <!-- Col 1: الحلم — ep 01 — vertical 9:16 video -->
+    <div class="ep-col">
+      <div class="ep-col-bg" style="background-image:url('https://media.licdn.com/dms/image/v2/C5112AQFe6Ug8daYpYQ/article-cover_image-shrink_720_1280/article-cover_image-shrink_720_1280/0/1520140546592?e=2147483647&v=beta&t=sRJNvhROfGm7C5WNsSn7BrM0f_KsI8EWy27U9OmNnvU');background-position:center center;"></div>
+      <div class="ep-col-ov" style="background:linear-gradient(to bottom, rgba(0,0,0,0.82) 0%, rgba(0,0,0,0.42) 45%, rgba(0,0,0,0.78) 100%);"></div>
+      <div class="ep-col-inner">
+        <div class="ep-col-num">01 / 06</div>
+        <div class="ep-col-title">الحلم</div>
+        <div class="ep-col-tag">قبل أن يدخل نايل</div>
+        <div class="ep-col-summary">شاب يقف على عتبة حلم — خريّج هندسة معمارية يتابع كل مشروع لنايل من بعيد. لحظة كتابة طلب التقديم — العتبة قبل الدخول.</div>
+        <div class="ep-col-video">
+          <iframe
+            src="https://www.youtube.com/embed/gjq81Jx-DK4?rel=0&modestbranding=1&controls=1"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+            allowfullscreen loading="lazy"></iframe>
+        </div>
+        <div class="ep-col-meta">
+          <b>المواقع</b>
+          <span>خارج القاهرة عند الفجر · شقة آدم · مدخل مقر نايل</span>
+          <b style="margin-top:6px;">الأبطال</b>
+          <span>آدم · منظور أول</span>
+        </div>
+        <div class="ep-col-dur">90 SEC</div>
+      </div>
+    </div>
+
+    <!-- Col 2: نايل ستايل — ep 02 — new bg image -->
+    <div class="ep-col">
+      <div class="ep-col-bg" style="background-image:url('mopyypfs-episode-2-bg.png');background-position:center center;"></div>
+      <div class="ep-col-ov" style="background:linear-gradient(to bottom, rgba(0,0,0,0.78) 0%, rgba(0,0,0,0.36) 42%, rgba(0,0,0,0.7) 100%);"></div>
+      <div class="ep-col-inner">
+        <div class="ep-col-num">02 / 06</div>
+        <div class="ep-col-title">نايل ستايل</div>
+        <div class="ep-col-tag">أول يوم في عالم نايل</div>
+        <div class="ep-col-summary">يوم آدم الأول يكشف شركة لا تشبه أي مكان — قرارات حقيقية، لحظات إنسانية، فرق متناغمة تشتغل بصمت.</div>
+        <div class="ep-col-meta">
+          <b>المواقع</b>
+          <span>مقر نايل بالكامل — يوم عمل عادي</span>
+          <b style="margin-top:6px;">الأبطال</b>
+          <span>آدم + الفريق كاملاً</span>
+        </div>
+        <div class="ep-col-ghost">02</div>
+        <div class="ep-col-dur">90 SEC</div>
+      </div>
+    </div>
+
+    <!-- Col 3: اللي مالوش مثيل — ep 03 -->
+    <div class="ep-col">
+      <div class="ep-col-bg" style="background-image:url('https://nile-developments.com/mainsite/wp-content/uploads/2025/06/2-TEAM-1-scaled.webp');background-position:center center;"></div>
+      <div class="ep-col-ov" style="background:linear-gradient(to bottom, rgba(0,0,0,0.78) 0%, rgba(0,0,0,0.32) 42%, rgba(0,0,0,0.66) 100%);"></div>
+      <div class="ep-col-inner">
+        <div class="ep-col-num">03 / 06</div>
+        <div class="ep-col-title">اللي مالوش مثيل</div>
+        <div class="ep-col-tag">موقع ٣١ شمال</div>
+        <div class="ep-col-summary">آدم يرافق الفريق إلى موقع ٣١ شمال — الدور الأخير يكتمل، الفريق يحتفل بإنجاز يدخل التاريخ.</div>
+        <div class="ep-col-meta">
+          <b>المواقع</b>
+          <span>موقع مشروع ٣١ شمال · حفلة الإنجاز</span>
+          <b style="margin-top:6px;">الأبطال</b>
+          <span>آدم + فريق العمليات + القيادة</span>
+        </div>
+        <div class="ep-col-ghost">03</div>
+        <div class="ep-col-dur">90 SEC</div>
+      </div>
+    </div>
+
+    <!-- Col 4: ٢٣٣ متر — ep 04 -->
+    <div class="ep-col">
+      <div class="ep-col-bg" style="background-image:url('https://nile-developments.com/mainsite/wp-content/uploads/2022/07/g3.jpg');background-position:center center;"></div>
+      <div class="ep-col-ov" style="background:linear-gradient(to bottom, rgba(0,0,0,0.75) 0%, rgba(0,0,0,0.3) 42%, rgba(0,0,0,0.68) 100%);"></div>
+      <div class="ep-col-inner">
+        <div class="ep-col-num">04 / 06</div>
+        <div class="ep-col-title">٢٣٣ متر</div>
+        <div class="ep-col-tag">Nile Business City</div>
+        <div class="ep-col-summary">آدم يحضر اجتماعاً تاريخياً — شراكة Grand Millennium لتشغيل Tycoon Tower، أعلى فندق في إفريقيا.</div>
+        <div class="ep-col-meta">
+          <b>المواقع</b>
+          <span>موقع نايل بيزنس سيتي · قاعة الاجتماعات · حفل الإطلاق</span>
+          <b style="margin-top:6px;">الأبطال</b>
+          <span>آدم + م. محمد طاهر + شركاء Grand Millennium</span>
+        </div>
+        <div class="ep-col-ghost">04</div>
+        <div class="ep-col-dur">90 SEC</div>
+      </div>
+    </div>
+
+    <!-- Col 5: باريس في التجمع — ep 05 -->
+    <div class="ep-col">
+      <div class="ep-col-bg" style="background-image:url('https://cbe-realestate-egypt.fsn1.your-objectstorage.com/francia/mobile/1-2.webp');background-position:center center;"></div>
+      <div class="ep-col-ov" style="background:linear-gradient(to bottom, rgba(0,0,0,0.74) 0%, rgba(0,0,0,0.28) 42%, rgba(0,0,0,0.66) 100%);"></div>
+      <div class="ep-col-inner">
+        <div class="ep-col-num">05 / 06</div>
+        <div class="ep-col-title">باريس في التجمع</div>
+        <div class="ep-col-tag">Nile Boulevard</div>
+        <div class="ep-col-summary">آدم يدخل غرفة Marketing في لحظة ولادة حملة — الفريق يبني سرد Nile Boulevard من الصفر. آدم يساهم لأول مرة بفكرة.</div>
+        <div class="ep-col-meta">
+          <b>المواقع</b>
+          <span>غرفة التسويق · موقع Nile Boulevard · CGI Shots</span>
+          <b style="margin-top:6px;">الأبطال</b>
+          <span>آدم + كريم منصور + هبه حسام + م. محمود طاهر</span>
+        </div>
+        <div class="ep-col-ghost">05</div>
+        <div class="ep-col-dur">90 SEC</div>
+      </div>
+    </div>
+
+    <!-- Col 6: أيقونة جديدة — ep 06 FINALE -->
+    <div class="ep-col" style="border-left-color:rgba(146,114,65,0.4);">
+      <div class="ep-col-bg" style="background-image:url('https://nile-develop.com/wp-content/uploads/2023/07/TT-07-e1688994870857-1024x944.png');background-position:center center;"></div>
+      <div class="ep-col-ov" style="background:linear-gradient(to bottom, rgba(0,0,0,0.78) 0%, rgba(0,0,0,0.28) 35%, rgba(0,0,0,0.78) 100%), linear-gradient(to bottom, rgba(146,114,65,0.12) 0%, transparent 40%);"></div>
+      <div class="ep-col-inner" style="border-top:2px solid rgba(146,114,65,0.55);">
+        <div class="ep-col-num" style="color:var(--gold);opacity:1;">06 / 06 ★</div>
+        <div class="ep-col-title" style="color:var(--gold-lt);">أيقونة جديدة</div>
+        <div class="ep-col-tag" style="color:rgba(184,152,96,0.95);">النهر الأخضر · The Reveal</div>
+        <div class="ep-col-summary" style="color:rgba(184,152,96,0.7);">ذروة الموسم. الفريق كاملاً مجتمع في قاعة المجلس. الأخوان طاهر يكشفان للفريق المشروع القادم. آدم لم يعد ضيفاً بل جزءاً من المنظومة.</div>
+        <div class="ep-col-meta" style="border-top-color:rgba(146,114,65,0.18);">
+          <b>المواقع</b>
+          <span>قاعة مجلس الإدارة · موقع النهر الأخضر</span>
+          <b style="margin-top:6px;">الأبطال</b>
+          <span>آدم + الفريق كاملاً + الأخوان طاهر</span>
+        </div>
+        <div style="font-family:var(--mono);font-size:9.5px;letter-spacing:0.22em;color:rgba(146,114,65,0.55);margin-top:8px;direction:ltr;">SEASON FINALE</div>
+        <div class="ep-col-ghost" style="color:var(--gold);opacity:0.06;">06</div>
+        <div class="ep-col-dur">90 SEC</div>
+      </div>
+    </div>
+
+  </div>
+
+  <footer class="foot ep-foot">
+    <img src="mopv07ic-POWERED-BY-STRIKE-LOGO-WHITE-3X_2x_2x.png" class="powered-by" alt="Powered by Strike Media">
+    <span class="foot-lbl">خريطة الموسم</span>
+    <span class="foot-num">06 / 10</span>
   </footer>
 
+</div>
+
+<!-- ═══════════════════════════════════
+     07 · أبطال العمل
+═══════════════════════════════════ -->
+<div class="slide s-dark" data-label="07 أبطال العمل" style="background:#0f0f10;position:relative;overflow:hidden;">
+  <div class="team-slide-bg-watermark">07</div>
+
+  <header class="chrome">
+    <div class="ch-l">
+      <img src="mopqrvgv-Nile_Developments.svg.png" class="logo" alt="Nile Developments">
+      <span class="ch-sep"></span>
+      <span class="ch-brand">صنّاع القيمة</span>
+    </div>
+    <span class="foot-num">07 / 10</span>
+  </header>
+
+  <div class="slide-body" style="padding-top:10px; gap:12px;">
+    <div class="kicker" style="margin-bottom:4px;">من يبنون القيمة</div>
+    <h2 class="t-xl" style="margin-bottom:14px;">أبطال الموسم</h2>
+
+    <div class="team-leaders">
+      <div class="team-leader-card">
+        <div class="team-leader-name">م. محمد طاهر</div>
+        <div class="team-leader-role">رئيس مجلس الإدارة</div>
+      </div>
+      <div class="team-leader-card">
+        <div class="team-leader-name">م. محمود طاهر</div>
+        <div class="team-leader-role">الرئيس التنفيذي</div>
+      </div>
+    </div>
+
+    <div class="team-grid">
+      <div class="team-card">
+        <div class="team-card-name">أ. محمد خليل</div>
+        <div class="team-card-role">المدير المالي للمجموعة</div>
+      </div>
+      <div class="team-card">
+        <div class="team-card-name">م. محمود الصقار</div>
+        <div class="team-card-role">PMO Director</div>
+      </div>
+      <div class="team-card">
+        <div class="team-card-name">م. محمد مطر</div>
+        <div class="team-card-role">الإدارة الهندسية — NBC / Tycoon Tower</div>
+      </div>
+      <div class="team-card">
+        <div class="team-card-name">م. محمد خالد</div>
+        <div class="team-card-role">الإدارة الهندسية — NBC / Tycoon Center</div>
+      </div>
+      <div class="team-card">
+        <div class="team-card-name">م. كريم منصور</div>
+        <div class="team-card-role">مدير قطاع التسويق</div>
+      </div>
+      <div class="team-card">
+        <div class="team-card-name">أ. هبة حسام</div>
+        <div class="team-card-role">مدير التسويق الرقمي</div>
+      </div>
+      <div class="team-card">
+        <div class="team-card-name">أ. محمد درويش</div>
+        <div class="team-card-role">مدير مبيعات</div>
+      </div>
+      <div class="team-card">
+        <div class="team-card-name">أ. محمد عبد العال</div>
+        <div class="team-card-role">مدير مبيعات</div>
+      </div>
+    </div>
+  </div>
+
+  <footer class="foot">
+    <img src="mopv07ic-POWERED-BY-STRIKE-LOGO-WHITE-3X_2x_2x.png" class="powered-by" alt="Powered by Strike Media">
+    <span class="foot-lbl">أبطال العمل</span>
+    <span class="foot-num">07 / 10</span>
+  </footer>
+</div>
+
+<!-- ═══════════════════════════════════
+     08 · التنفيذ
+═══════════════════════════════════ -->
+<div class="slide s-dark" data-label="08 التنفيذ">
+  <header class="chrome">
+    <div class="ch-l">
+      <img src="mopqrvgv-Nile_Developments.svg.png" class="logo" alt="Nile Developments">
+      <span class="ch-sep"></span>
+      <span class="ch-brand">صنّاع القيمة</span>
+    </div>
+    <span class="foot-num">08 / 10</span>
+  </header>
+
+  <div class="slide-body" style="padding-top:16px; gap:16px;">
+    <div class="kicker">الإنتاج والتوزيع</div>
+    <h2 class="t-h1">تصوير سينمائي. توزيع متكامل.</h2>
+    <div class="prod-grid" style="margin-top:24px; flex:1; align-items:start;">
+      <div>
+        <p class="t-body" style="margin-bottom:18px;">
+          كل حلقة تُصوَّر بمعايير سينمائية في مواقع نايل الحقيقية — لا استوديو، لا ديكور مصطنع.
+        </p>
+        <ul class="prod-list">
+          <li>مقر نايل الرئيسي — الإيقاع اليومي للشركة</li>
+          <li>مواقع المشاريع — مشروع ٣١ + NBC + Boulevard</li>
+          <li>CGI Shots لمشهد Nile Boulevard</li>
+          <li>نسخة طويلة (٨–١٢ دق) للعروض والتقارير السنوية</li>
+        </ul>
+      </div>
+      <div>
+        <div class="kicker" style="margin-bottom:18px;">قنوات التوزيع</div>
+        <div class="plat">Instagram</div>
+        <div class="plat">TikTok</div>
+        <div class="plat">LinkedIn</div>
+        <div class="plat">Facebook</div>
+        <p style="font-family:var(--body);font-size:17px;opacity:0.4;margin-top:14px;direction:rtl;">
+          + نسخة طويلة لعروض المستثمرين والتقارير السنوية
+        </p>
+      </div>
+    </div>
+  </div>
+
+  <footer class="foot">
+    <img src="mopv07ic-POWERED-BY-STRIKE-LOGO-WHITE-3X_2x_2x.png" class="powered-by" alt="Powered by Strike Media">
+    <span class="foot-lbl">كيف يُنفَّذ</span>
+    <span class="foot-num">08 / 10</span>
+  </footer>
+</div>
+
+<!-- ═══════════════════════════════════
+     09 · النهر الأخضر — full bleed
+═══════════════════════════════════ -->
+<div class="slide s-photo" data-label="09 النهر الأخضر">
+  <div class="ph-img" style="background-image:url('https://img.youm7.com/ArticleImgs/2024/2/14/342759-%D9%85%D8%B4%D8%B1%D9%88%D8%B9-%D8%A7%D9%84%D9%86%D9%87%D8%B1-%D8%A7%D9%84%D8%A7%D8%AE%D8%B6%D8%B1-%D8%A8%D8%A7%D9%84%D8%B9%D8%A7%D8%B5%D9%85%D8%A9-%D8%A7%D9%84%D8%A7%D8%AF%D8%A7%D8%B1%D9%8A%D9%87-%D8%A7%D9%84%D8%AC%D8%AF%D9%8A%D8%AF%D9%87--(1).jpeg');background-position:center 30%;"></div>
+  <div class="ph-ov grain" style="background:linear-gradient(to bottom, rgba(0,0,0,0.62) 0%, rgba(0,0,0,0.22) 25%, rgba(0,0,0,0.32) 60%, rgba(0,0,0,0.92) 100%);"></div>
+
+  <header class="chrome">
+    <div class="ch-l">
+      <img src="mopqrvgv-Nile_Developments.svg.png" class="logo" alt="Nile Developments">
+      <span class="ch-sep"></span>
+      <span style="font-family:var(--mono);font-size:11px;letter-spacing:0.32em;text-transform:uppercase;color:var(--gold);">الحلقة السادسة · أيقونة جديدة</span>
+      <span class="ch-sep"></span>
+      <span class="ch-tag">ذروة الموسم</span>
+    </div>
+    <span style="font-family:var(--mono);font-size:11px;letter-spacing:0.2em;color:var(--gold);opacity:0.85;">09 / 10</span>
+  </header>
+
+  <div class="cv" style="gap:0; justify-content:flex-end; padding-bottom:16px;">
+    <div class="kicker" style="letter-spacing:0.46em; margin-bottom:14px;">الحلقة السادسة · الذروة</div>
+    <h1 style="font-family:var(--body);font-weight:900;font-size:128px;line-height:1.0;color:var(--gold);text-shadow:0 0 120px rgba(146,114,65,0.5), 0 0 40px rgba(146,114,65,0.3);">
+      النهر الأخضر
+    </h1>
+    <div style="width:64px;height:2px;background:var(--gold);margin:22px 0;box-shadow:0 0 24px rgba(146,114,65,0.7);"></div>
+    <p class="t-lead" style="font-size:28px; font-weight:500;">كل ما قبلها مقدمة.</p>
+    <p class="t-body" style="max-width:780px; margin-top:10px;opacity:0.78;">
+      بعد خمس حلقات من الداخل — يرى الجمهور الشركة، يعرف قادتها، يفهم ما تصنعه.
+      ثم يأتي الإعلان. طبيعياً. لا مفاجأة مصطنعة — بل نتيجة منطقية لقصة بدأت من الحلقة الأولى.
+    </p>
+  </div>
+
+  <footer class="foot">
+    <img src="mopv07ic-POWERED-BY-STRIKE-LOGO-WHITE-3X_2x_2x.png" class="powered-by" alt="Powered by Strike Media">
+    <span class="foot-lbl">النهر الأخضر</span>
+    <span class="foot-num">09 / 10</span>
+  </footer>
+</div>
+
+<!-- ═══════════════════════════════════
+     10 · الخطوة التالية
+═══════════════════════════════════ -->
+<div class="slide s-black" data-label="10 الخطوة التالية">
+  <header class="chrome">
+    <div class="ch-l">
+      <img src="mopqrvgv-Nile_Developments.svg.png" class="logo" alt="Nile Developments">
+      <span class="ch-sep"></span>
+      <span class="ch-brand">صنّاع القيمة</span>
+    </div>
+    <span class="foot-num">10 / 10</span>
+  </header>
+
+  <div class="cv" style="gap:0;">
+    <div class="kicker" style="margin-bottom:20px;">ما التالي</div>
+    <h2 style="font-family:var(--body);font-weight:700;font-size:78px;line-height:1.08;">اعتماد المقترح</h2>
+    <div style="margin-top:44px;">
+      <div class="step">
+        <div class="step-n">01</div>
+        <div class="step-t">مراجعة المقترح وإبداء الملاحظات الأولية</div>
+      </div>
+      <div class="step">
+        <div class="step-n">02</div>
+        <div class="step-t">اجتماع مشترك لمناقشة التفاصيل الإنتاجية والجدول الزمني</div>
+      </div>
+      <div class="step">
+        <div class="step-n">03</div>
+        <div class="step-t">إطلاق الموسم — من الداخل إلى العالم</div>
+      </div>
+    </div>
+  </div>
+
+  <div style="direction:ltr;display:flex;justify-content:space-between;align-items:center;padding:18px 0 0;border-top:1px solid rgba(255,255,255,0.07);margin-top:auto;">
+    <img src="mopqrvgv-Nile_Developments.svg.png" style="height:22px;filter:brightness(0) invert(1) opacity(0.5);" alt="Nile Developments">
+    <span style="font-family:var(--mono);font-size:11px;letter-spacing:0.18em;text-transform:uppercase;color:rgba(255,255,255,0.24);">Strike Media · مايو ٢٠٢٦</span>
+  </div>
+
+  <footer class="foot" style="margin-top:12px;">
+    <img src="mopv07ic-POWERED-BY-STRIKE-LOGO-WHITE-3X_2x_2x.png" class="powered-by" alt="Powered by Strike Media">
+    <span class="foot-lbl">الخطوة التالية</span>
+    <span class="foot-num">10 / 10</span>
+  </footer>
+</div>
+
+  </div><!-- /stage -->
+</div><!-- /wrap -->
+
+<!-- ── Navigation ── -->
+<div id="nav">
+  <button class="nbtn" id="prev" disabled>&#8592;</button>
+  <div class="ndots" id="dots"></div>
+  <span class="ncount" id="count">1 / 10</span>
+  <button class="nbtn" id="next">&#8594;</button>
+</div>
+
+<div id="kbd-hint"><kbd>&larr;</kbd> <kbd>&rarr;</kbd> للتنقل</div>
+
+<script>
+(function() {
+  var stage  = document.getElementById('stage');
+  var slides = Array.from(document.querySelectorAll('#stage .slide'));
+  var dotsEl = document.getElementById('dots');
+  var countEl= document.getElementById('count');
+  var prevBtn= document.getElementById('prev');
+  var nextBtn= document.getElementById('next');
+  var hint   = document.getElementById('kbd-hint');
+  var total  = slides.length;
+  var cur    = 0;
+  var isMobile = false;
+
+  function checkMobile() {
+    isMobile = window.innerWidth <= 900;
+    if (isMobile) {
+      document.body.classList.add('mobile-layout');
+    } else {
+      document.body.classList.remove('mobile-layout');
+    }
+  }
+
+  function scaleStage() {
+    checkMobile();
+    if (isMobile) {
+      stage.style.transform = 'none';
+      return;
+    }
+    var s = Math.min(window.innerWidth / 1920, window.innerHeight / 1080) * 0.99;
+    stage.style.transform = 'scale(' + s + ')';
+  }
+  window.addEventListener('resize', scaleStage);
+  scaleStage();
+
+  slides.forEach(function(_, i) {
+    var d = document.createElement('button');
+    d.className = 'ndot' + (i === 0 ? ' active' : '');
+    d.setAttribute('aria-label', 'Slide ' + (i + 1));
+    d.onclick = function() { go(i); };
+    dotsEl.appendChild(d);
+  });
+
+  function go(n) {
+    if (n < 0 || n >= total) return;
+    if (isMobile) {
+      slides[n].scrollIntoView({ behavior: 'smooth', block: 'start' });
+      cur = n;
+      updateNav();
+      return;
+    }
+    slides[cur].classList.remove('active');
+    dotsEl.children[cur].classList.remove('active');
+    cur = n;
+    slides[cur].classList.remove('active');
+    void slides[cur].offsetWidth;
+    slides[cur].classList.add('active');
+    dotsEl.children[cur].classList.add('active');
+    updateNav();
+    sessionStorage.setItem('nile9', cur);
+  }
+
+  function updateNav() {
+    countEl.textContent = (cur + 1) + ' / ' + total;
+    prevBtn.disabled = (cur === 0);
+    nextBtn.disabled = (cur === total - 1);
+  }
+
+  prevBtn.onclick = function() { go(cur - 1); };
+  nextBtn.onclick = function() { go(cur + 1); };
+
+  document.addEventListener('keydown', function(e) {
+    if (['ArrowRight', ' ', 'PageDown'].indexOf(e.key) > -1) { e.preventDefault(); go(cur + 1); }
+    if (['ArrowLeft', 'PageUp'].indexOf(e.key) > -1)         { e.preventDefault(); go(cur - 1); }
+    if (e.key === 'Home') go(0);
+    if (e.key === 'End')  go(total - 1);
+    hideHint();
+  });
+
+  var tx = 0;
+  document.addEventListener('touchstart', function(e) { tx = e.touches[0].clientX; }, { passive: true });
+  document.addEventListener('touchend',   function(e) {
+    var dx = e.changedTouches[0].clientX - tx;
+    if (Math.abs(dx) > 55) go(cur + (dx < 0 ? 1 : -1));
+  }, { passive: true });
+
+  if ('IntersectionObserver' in window) {
+    var obs = new IntersectionObserver(function(entries) {
+      if (!isMobile) return;
+      entries.forEach(function(entry) {
+        if (entry.isIntersecting && entry.intersectionRatio > 0.5) {
+          var idx = slides.indexOf(entry.target);
+          if (idx !== -1 && idx !== cur) {
+            cur = idx;
+            updateNav();
+            Array.from(dotsEl.children).forEach(function(d, i) {
+              d.classList.toggle('active', i === cur);
+            });
+          }
+        }
+      });
+    }, { threshold: 0.5 });
+    slides.forEach(function(s) { obs.observe(s); });
+  }
+
+  var idleTimer;
+  function showHintAfterIdle() {
+    clearTimeout(idleTimer);
+    idleTimer = setTimeout(function() {
+      if (!isMobile && hint) hint.classList.add('show');
+    }, 3000);
+  }
+  function hideHint() {
+    if (hint) hint.classList.remove('show');
+    showHintAfterIdle();
+  }
+  ['mousemove','click','touchstart','keydown'].forEach(function(ev) {
+    document.addEventListener(ev, hideHint, { passive: true });
+  });
+  showHintAfterIdle();
+
+  var saved = parseInt(sessionStorage.getItem('nile9') || '0');
+  go(isNaN(saved) ? 0 : Math.min(saved, total - 1));
+})();
+</script>
 </body>
 </html>
