@@ -1,0 +1,413 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5">
+  <title>صنّاع القيمة · Strike Media × Nile Developments</title>
+  <meta name="description" content="موسم درامي قصير · خمس حلقات تعرض نايل من الداخل وتُمهِّد للمشروع القادم في النهر الأخضر.">
+  <meta name="theme-color" content="#0a0a0c">
+
+  <!-- Favicons -->
+  <link rel="icon" href="/favicon.ico" sizes="any">
+  <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+  <link rel="manifest" href="/site.webmanifest">
+
+  <!-- Open Graph / social -->
+  <meta property="og:title" content="صنّاع القيمة · Strike Media × Nile Developments">
+  <meta property="og:description" content="موسم درامي قصير · خمس حلقات تعرض نايل من الداخل وتُمهِّد للمشروع القادم في النهر الأخضر.">
+  <meta property="og:type" content="website">
+  <meta property="og:image" content="/og-image.png">
+  <meta property="og:url" content="https://nile-series.strikestudio.net/">
+  <meta name="twitter:card" content="summary_large_image">
+
+  <!-- Fonts: Noto Sans Arabic + Inter -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Arabic:wght@400;500;700;900&family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      --ink:        #0a0a0c;
+      --body:      #1a1410;
+      --cream:     #f8f1e3;
+      --taupe:     #b8a98c;
+      --warmGrey:  #7a7062;
+      --gold:      #c9a96a;
+      --goldDeep:  #9c7b36;
+      --red:       #9c2820;
+    }
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html, body {
+      background: var(--ink);
+      color: var(--cream);
+      font-family: "Noto Sans Arabic", "Inter", system-ui, sans-serif;
+      font-size: 16px;
+      line-height: 1.65;
+      -webkit-font-smoothing: antialiased;
+      min-height: 100vh;
+    }
+    body {
+      background:
+        radial-gradient(ellipse 80% 50% at 50% 0%, rgba(201, 169, 106, 0.08), transparent 70%),
+        radial-gradient(ellipse 60% 40% at 50% 100%, rgba(156, 40, 32, 0.05), transparent 70%),
+        var(--ink);
+    }
+
+    /* ── HERO ───────────────────────────────────────────── */
+    .hero {
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 4rem 2rem 6rem;
+      text-align: center;
+      position: relative;
+    }
+    .hero__brand-strip {
+      position: absolute;
+      top: 2rem; left: 0; right: 0;
+      display: flex;
+      justify-content: center;
+      gap: 2rem;
+      font-family: "Inter", sans-serif;
+      font-size: 0.7rem;
+      font-weight: 600;
+      letter-spacing: 0.4em;
+      color: var(--gold);
+      text-transform: uppercase;
+    }
+    .hero__brand-strip span:nth-child(2) { color: var(--warmGrey); }
+    .hero__logo {
+      width: 140px;
+      height: 140px;
+      margin-bottom: 3rem;
+      filter: drop-shadow(0 8px 30px rgba(201, 169, 106, 0.25));
+      border-radius: 14%;
+    }
+    .hero__title {
+      font-family: "Noto Sans Arabic", sans-serif;
+      font-size: clamp(3.5rem, 12vw, 8.5rem);
+      font-weight: 900;
+      line-height: 1;
+      letter-spacing: 0.02em;
+      color: var(--cream);
+      margin-bottom: 1rem;
+      background: linear-gradient(180deg, var(--cream) 0%, #d8c8a0 100%);
+      -webkit-background-clip: text; background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+    .hero__sub {
+      font-family: "Noto Sans Arabic", sans-serif;
+      font-size: clamp(1rem, 2.4vw, 1.4rem);
+      font-weight: 400;
+      color: var(--taupe);
+      letter-spacing: 0.04em;
+      margin-bottom: 0.5rem;
+    }
+    .hero__sub--accent {
+      color: var(--gold);
+      font-weight: 700;
+    }
+    .hero__rule {
+      width: 90px;
+      height: 1.5px;
+      background: linear-gradient(90deg, transparent, var(--gold), transparent);
+      margin: 3rem auto 2rem;
+    }
+    .hero__pitch {
+      font-family: "Noto Sans Arabic", sans-serif;
+      font-size: clamp(1.1rem, 2.6vw, 1.5rem);
+      font-weight: 400;
+      color: var(--cream);
+      max-width: 640px;
+      line-height: 1.7;
+      opacity: 0.92;
+    }
+    .hero__pitch strong {
+      color: var(--gold);
+      font-weight: 700;
+    }
+    .hero__cta-row {
+      margin-top: 3rem;
+      font-family: "Inter", sans-serif;
+      font-size: 0.7rem;
+      font-weight: 600;
+      letter-spacing: 0.3em;
+      color: var(--warmGrey);
+      text-transform: uppercase;
+    }
+    .hero__cta-row::before, .hero__cta-row::after {
+      content: "·"; margin: 0 0.6rem; color: var(--gold);
+    }
+
+    /* ── EPISODES ───────────────────────────────────────── */
+    .episodes {
+      padding: 6rem 2rem 4rem;
+      max-width: 1100px;
+      margin: 0 auto;
+    }
+    .episodes__intro {
+      text-align: center;
+      margin-bottom: 4rem;
+    }
+    .episodes__intro-eyebrow {
+      font-family: "Inter", sans-serif;
+      font-size: 0.7rem;
+      font-weight: 700;
+      letter-spacing: 0.4em;
+      color: var(--gold);
+      text-transform: uppercase;
+      margin-bottom: 1rem;
+    }
+    .episodes__intro-title {
+      font-family: "Noto Sans Arabic", sans-serif;
+      font-size: clamp(2rem, 5vw, 3rem);
+      font-weight: 700;
+      color: var(--cream);
+      margin-bottom: 1rem;
+    }
+    .episodes__intro-sub {
+      font-family: "Noto Sans Arabic", sans-serif;
+      font-size: clamp(0.95rem, 2vw, 1.1rem);
+      color: var(--taupe);
+      max-width: 540px;
+      margin: 0 auto;
+    }
+    .episode-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 1.5rem;
+    }
+    .episode {
+      padding: 2.2rem 1.8rem;
+      background: linear-gradient(180deg, rgba(201, 169, 106, 0.04), rgba(201, 169, 106, 0.01));
+      border: 1px solid rgba(201, 169, 106, 0.15);
+      border-radius: 12px;
+      transition: transform .25s ease, border-color .25s ease, background .25s ease;
+      cursor: default;
+    }
+    .episode:hover {
+      transform: translateY(-3px);
+      border-color: rgba(201, 169, 106, 0.4);
+      background: linear-gradient(180deg, rgba(201, 169, 106, 0.08), rgba(201, 169, 106, 0.02));
+    }
+    .episode__num {
+      font-family: "Inter", sans-serif;
+      font-size: 0.75rem;
+      font-weight: 700;
+      letter-spacing: 0.3em;
+      color: var(--gold);
+      margin-bottom: 1rem;
+    }
+    .episode__title {
+      font-family: "Noto Sans Arabic", sans-serif;
+      font-size: 1.55rem;
+      font-weight: 700;
+      color: var(--cream);
+      margin-bottom: 0.9rem;
+      line-height: 1.3;
+    }
+    .episode__desc {
+      font-family: "Noto Sans Arabic", sans-serif;
+      font-size: 0.95rem;
+      color: var(--taupe);
+      line-height: 1.7;
+      margin-bottom: 1.5rem;
+      min-height: 4.5em;
+    }
+    .episode__meta {
+      display: flex;
+      justify-content: space-between;
+      padding-top: 1.2rem;
+      border-top: 1px solid rgba(201, 169, 106, 0.12);
+      font-family: "Inter", sans-serif;
+      font-size: 0.7rem;
+      letter-spacing: 0.2em;
+      color: var(--warmGrey);
+      text-transform: uppercase;
+    }
+    .episode__meta strong {
+      color: var(--gold);
+      font-weight: 700;
+    }
+    .episode--finale {
+      background: linear-gradient(180deg, rgba(156, 40, 32, 0.08), rgba(156, 40, 32, 0.02));
+      border-color: rgba(156, 40, 32, 0.25);
+    }
+    .episode--finale:hover {
+      border-color: rgba(156, 40, 32, 0.5);
+    }
+    .episode--finale .episode__num { color: #d65a52; }
+    .episode--finale .episode__title { color: var(--cream); }
+
+    /* ── FOOTER ─────────────────────────────────────────── */
+    footer {
+      padding: 4rem 2rem 3rem;
+      text-align: center;
+      border-top: 1px solid rgba(201, 169, 106, 0.1);
+      margin-top: 4rem;
+    }
+    footer .tagline {
+      font-family: "Noto Sans Arabic", sans-serif;
+      font-size: clamp(0.95rem, 2vw, 1.15rem);
+      font-style: italic;
+      color: var(--taupe);
+      margin-bottom: 0.5rem;
+    }
+    footer .tagline--accent {
+      color: var(--gold);
+      font-weight: 700;
+    }
+    footer .credit {
+      margin-top: 2rem;
+      font-family: "Inter", sans-serif;
+      font-size: 0.7rem;
+      font-weight: 600;
+      letter-spacing: 0.4em;
+      color: var(--warmGrey);
+      text-transform: uppercase;
+    }
+    footer .credit a {
+      color: var(--gold);
+      text-decoration: none;
+      transition: color .2s;
+    }
+    footer .credit a:hover {
+      color: var(--cream);
+    }
+
+    /* ── responsive tweaks ──────────────────────────────── */
+    @media (max-width: 600px) {
+      .hero__brand-strip {
+        flex-direction: column;
+        gap: 0.4rem;
+        font-size: 0.6rem;
+      }
+      .hero__logo { width: 100px; height: 100px; margin-bottom: 2rem; }
+      .episode { padding: 1.8rem 1.5rem; }
+    }
+
+    /* Honor users who prefer reduced motion */
+    @media (prefers-reduced-motion: reduce) {
+      .episode, .episode:hover { transition: none; transform: none; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ── HERO ───────────────────────────────────────────── -->
+  <section class="hero">
+    <div class="hero__brand-strip">
+      <span>Strike Media</span>
+      <span>×</span>
+      <span>Nile Developments</span>
+    </div>
+
+    <img src="/nile-logo.png" alt="Nile Developments" class="hero__logo">
+
+    <h1 class="hero__title">صنّاع القيمة</h1>
+    <p class="hero__sub">موسم درامي قصير</p>
+    <p class="hero__sub hero__sub--accent">٢٠٢٦</p>
+
+    <div class="hero__rule"></div>
+
+    <p class="hero__pitch">
+      خمس حلقات تعرض نايل من الداخل،<br>
+      وتُمهِّد للمشروع القادم في
+      <strong>النهر الأخضر</strong>.
+    </p>
+
+    <div class="hero__cta-row">٤٥٠ ثانية &nbsp; ٥ حلقات &nbsp; ٤ منصّات</div>
+  </section>
+
+  <!-- ── EPISODES ───────────────────────────────────────── -->
+  <section class="episodes">
+    <div class="episodes__intro">
+      <p class="episodes__intro-eyebrow">THE SEASON</p>
+      <h2 class="episodes__intro-title">الحلقات الخمس</h2>
+      <p class="episodes__intro-sub">
+        كل حلقة ٩٠ ثانية. تُصوَّر بالكامل داخل مقرات نايل. تُنشَر على
+        Instagram · TikTok · LinkedIn · Facebook.
+      </p>
+    </div>
+
+    <div class="episode-grid">
+
+      <article class="episode">
+        <div class="episode__num">EPISODE 01</div>
+        <h3 class="episode__title">نايل ستايل</h3>
+        <p class="episode__desc">
+          الشركة من الداخل في يوم عمل عادي في نايل غير عادي في أي مكان آخر.
+        </p>
+        <div class="episode__meta">
+          <span><strong>٩٠ ث</strong></span>
+          <span>HQ + Projects</span>
+        </div>
+      </article>
+
+      <article class="episode">
+        <div class="episode__num">EPISODE 02</div>
+        <h3 class="episode__title">اللي مالوش مثيل</h3>
+        <p class="episode__desc">
+          مشروع ٣١ شمال — على وشك التسليم. خمس سنين من الإنجاز في حلقة واحدة.
+        </p>
+        <div class="episode__meta">
+          <span><strong>٩٠ ث</strong></span>
+          <span>31 North · Site</span>
+        </div>
+      </article>
+
+      <article class="episode">
+        <div class="episode__num">EPISODE 03</div>
+        <h3 class="episode__title">٢٣٣ متر</h3>
+        <p class="episode__desc">
+          Nile Business City — شراكة Grand Millennium وحجم Tycoon Tower.
+        </p>
+        <div class="episode__meta">
+          <span><strong>٩٠ ث</strong></span>
+          <span>Boardroom</span>
+        </div>
+      </article>
+
+      <article class="episode">
+        <div class="episode__num">EPISODE 04</div>
+        <h3 class="episode__title">باريس في التجمع</h3>
+        <p class="episode__desc">
+          كيف وُلِدَت حملة Nile Boulevard من الفريق — ولادة فكرة في غرفة ماركتنج.
+        </p>
+        <div class="episode__meta">
+          <span><strong>٩٠ ث</strong></span>
+          <span>Marketing Room</span>
+        </div>
+      </article>
+
+      <article class="episode episode--finale">
+        <div class="episode__num">EPISODE 05 · FINALE</div>
+        <h3 class="episode__title">أيقونة جديدة</h3>
+        <p class="episode__desc">
+          الإعلان الطبيعي عن «النهر الأخضر». الجميع يتجه للنهر الأخضر.
+        </p>
+        <div class="episode__meta">
+          <span><strong>٩٠ ث</strong></span>
+          <span>Green River Reveal</span>
+        </div>
+      </article>
+
+    </div>
+  </section>
+
+  <!-- ── FOOTER ─────────────────────────────────────────── -->
+  <footer>
+    <p class="tagline">البنايات تُبنى من الخرسانة.</p>
+    <p class="tagline tagline--accent">الشركات تُبنى من الناس.</p>
+
+    <p class="credit">
+      Produced by <a href="https://strikestudio.net" target="_blank" rel="noopener">Strike Media</a> &nbsp;·&nbsp; for Nile Developments &nbsp;·&nbsp; 2026
+    </p>
+  </footer>
+
+</body>
+</html>
